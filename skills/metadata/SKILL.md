@@ -1,23 +1,39 @@
 ---
 name: nanofile-metadata
-description: Inspect item attributes, file size, timestamps, read-only permissions, and text line/character metrics using NanoFile.
+description: Inspect item attributes, recursive folder size, directory item count, timestamps, read-only permissions, and text line/character metrics using NanoFile.
 ---
 
 # NanoFile 元数据读取技能 (Metadata Inspection)
 
-深入获取文件或文件夹的基础属性与扩展元数据。
+深入获取文件或文件夹的基础属性、文件夹总大小、项目数量与扩展元数据。
 
 ## 适用场景
-- 用户需要了解文件或目录的大小、只读状态、创建时间与最后修改时间。
+- 用户需要查询文件大小、只读状态、创建时间与最后修改时间。
+- **文件夹大小与数量**：用户需要读取指定文件夹的总大小（递归计算子文件体积）以及包含的项目/文件总数。
 - 用户需要检查文本或代码文件的行数、字符数等详细度量指标。
 
 ## 包含工具 (2 个)
 
 ### 1. `get_item_metadata`
-获取标准属性（大小、类型、时间戳、只读状态）。
+获取标准属性。对文件夹会自动递归计算内含文件的总大小（`size_bytes`）及项目数（`item_count`、`file_count`、`dir_count`）。
 ```json
 {
-  "path": "C:\\Users\\Username\\Documents\\report.docx"
+  "path": "D:\\Projects\\NanoFile"
+}
+```
+*文件夹返回示例*：
+```json
+{
+  "path": "D:\\Projects\\NanoFile",
+  "is_dir": true,
+  "is_file": false,
+  "is_readonly": false,
+  "size_bytes": 104857600,     // 文件夹内全部文件的累计大小
+  "item_count": 258,           // 项目总数
+  "file_count": 210,           // 文件数
+  "dir_count": 48,             // 子文件夹数
+  "created_at": "2026-08-01T08:00:00Z",
+  "modified_at": "2026-10-07T10:00:00Z"
 }
 ```
 
