@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "nanofile": {
+      "command": "nanofile.exe",
+      "args": ["--mcp"]
+    }
+  }
+}

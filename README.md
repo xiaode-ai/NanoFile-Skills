@@ -110,6 +110,42 @@ NanoFile-Skills/
 
 ---
 
+### 🌐 3. 全球与国内主流 Agent 平台兼容矩阵 (21+ 平台全覆盖)
+
+无论您使用的是国外前沿 Agent 还是国内自研 AI 编程/工作流平台，NanoFile 均能无缝适配：
+
+#### 🌍 国外主流 Agent 平台 (11 款)
+| 平台名称 | 适配协议 / 载体 | 接入方式 |
+| :--- | :--- | :--- |
+| **Claude** (Anthropic) | 原生 MCP (`stdio`) | `claude_desktop_config.json` 配置 `nanofile.exe --mcp` |
+| **Cursor** | 原生 MCP + `.cursorrules` | Cursor Settings > MCP Servers 添加，复制 [`.cursorrules`](plugins/cursor/.cursorrules) 到项目 |
+| **GitHub Copilot** | 原生 MCP + Copilot Rules | VS Code Copilot MCP 设置，自动识别 [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
+| **Google Antigravity** | 原生 MCP + `plugin.json` | 官方原生识别根目录 [`plugin.json`](plugin.json) 与 `skills/` |
+| **OpenCode** (Continue) | 原生 MCP (`stdio`) | Continue / OpenCode `config.json` 中配置 `nanofile` |
+| **OpenAI Codex** / GPTs | OpenAPI 3.1.0 协议 | GPTs 后台导入 [`plugins/openapi/openapi.json`](plugins/openapi/openapi.json) |
+| **xAI Grok** | Function Calling (OpenAPI) | 调用 [`plugins/openapi/openapi.json`](plugins/openapi/openapi.json) 工具声明 |
+| **OpenClaw** | 原生 MCP 客户端 | 直接配置本地 MCP 服务端命令 `nanofile.exe --mcp` |
+| **Hermes** (Nous Research) | Tool Calling / OpenAPI | 导入 [`plugins/openapi/openapi.json`](plugins/openapi/openapi.json) Schema |
+| **Inflection Pi** | 开放工具 API | 参照 OpenAPI 接口进行外部 Tool 绑定 |
+| **Bionic** (Bionic-GPT) | 原生 MCP / OpenAPI | 在 Bionic 连接面板中添加本地 MCP stdio 实例 |
+
+#### 🇨🇳 国内主流 Agent 平台 (10 款)
+| 平台名称 | 适配协议 / 载体 | 接入方式 |
+| :--- | :--- | :--- |
+| **字节跳动 Trae** | 原生 MCP (`stdio`) | Trae 设置 > MCP 面板添加 `nanofile.exe --mcp`，或使用 [`plugins/trae/mcp.json`](plugins/trae/mcp.json) |
+| **Kimi Code** (月之暗面) | 原生 MCP 协议 | 客户端设置中添加本地 MCP 扩展命令 |
+| **阿里通义灵码 Qoder** | 原生 MCP + 规则上下文 | IDE 设置中注册本地 MCP 服务端，配置代码库规则 |
+| **智谱 ZCode** (CodeGeeX) | 原生 MCP 扩展 | 插件设置中填写 `nanofile.exe --mcp` 即可接入 |
+| **MiniMax Code** (海螺/星野) | Function Calling / MCP | 导入工具定义或配置本地 Stdio 管道 |
+| **DeepSeek Harness** | 标准 Function Calling | 导入 [`mcp/schema.json`](mcp/schema.json) 或 [`plugins/openapi/openapi.json`](plugins/openapi/openapi.json) 声明 |
+| **腾讯 WorkBuddy** | 企业级自定义工具 / OpenAPI | 在机器人/工作流后台导入 OpenAPI 规范 |
+| **百度度伴 DuMate** (文心智能体) | 文心智能体 OpenAPI 插件 | 智能体开发平台导入 [`plugins/openapi/openapi.json`](plugins/openapi/openapi.json) |
+| **商汤 Marvis** | 智能体 Tool Schema | 导入 OpenAPI 规范作为代码/系统辅助工具 |
+| **QClaw** | 原生 MCP 客户端协议 | 直接挂载 `nanofile.exe --mcp` 本地运行实例 |
+
+
+---
+
 ## 🌐 English Documentation
 
 **NanoFile MCP & Skills** provides the official open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server declarations, modular agent skills, and ecosystem plugins for the [NanoFile Desktop](https://apps.microsoft.com/detail/9pgwd50gwcjw) app.
