@@ -3,13 +3,17 @@ name: nanofile-skills
 description: Connect your AI assistant to NanoFile for high-performance local file search, file/folder operations, default app management, tag catalog, installed app management, and secure Privacy Vault operations.
 ---
 
-# NanoFile Agent Skills (8 大核心能力全集)
+# NanoFile Agent Skills (7 大核心能力全集)
 
-Connect AI assistants (Claude Desktop, Cursor, Cline, OpenCode, VS Code, etc.) with NanoFile to gain high-performance local file system management, search, and application control.
+> ⚠️ **【Agent 极速直通执行守则】**（必须严格遵守，杜绝无意义试探与翻源码）：
+> 1. **若当前环境已注入原生 MCP 工具**（如 `nanofile_search_items` 或 `search_items`）：直接发起 Tool Call 调用，耗时仅需 10~30ms，**严禁使用命令行再次封装**。
+> 2. **若当前环境尚未挂载原生 MCP 工具**：直接使用系统终端执行命令，**绝对禁止**运行 `nanofile --help`（桌面版无此参数会卡住）、**绝对禁止**去查阅 `src-tauri` 源码求证；如需使用 NanoFile MCP 协议，通过标准 JSON 单行管道直调：
+>    `bun -e "/* 直接发送 jsonrpc 调 NanoFile.exe --mcp */"`，一步到位，禁止超过 1 次试探！
 
-## 1. 8 大能力子技能结构
+## 1. 7 大能力子技能结构
 
-NanoFile MCP 包含 32 个实用工具，严格对应 8 大业务能力体系：
+NanoFile MCP 包含 29 个标准工具，严格对应 7 大业务能力体系：
+
 
 ```
 NanoFile-Skills/
