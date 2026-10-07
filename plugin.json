@@ -1,6 +1,6 @@
 {
   "name": "nanofile",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "High-performance native filesystem, lightning search, tags, and privacy vault plugin for AI agents.",
   "author": "NanoFile Team",
   "homepage": "https://apps.microsoft.com/detail/9pgwd50gwcjw",

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "nanofile-agent-plugin",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "displayName": "NanoFile Agent Plugin",
   "description": "Native Windows filesystem management, lightning search, tags, and privacy vault plugin for AI agents.",
   "author": "NanoFile Team",
