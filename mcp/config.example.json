@@ -1,0 +1,35 @@
+{
+  "$comment": "NanoFile MCP Configuration Templates for Popular AI Hosts",
+  "claude_desktop": {
+    "mcpServers": {
+      "nanofile": {
+        "command": "nanofile.exe",
+        "args": ["--mcp"]
+      }
+    }
+  },
+  "cursor": {
+    "mcpServers": {
+      "nanofile": {
+        "command": "nanofile.exe",
+        "args": ["--mcp"]
+      }
+    }
+  },
+  "cline_or_roo_code": {
+    "mcpServers": {
+      "nanofile": {
+        "command": "nanofile.exe",
+        "args": ["--mcp"]
+      }
+    }
+  },
+  "windsurf": {
+    "mcpServers": {
+      "nanofile": {
+        "command": "nanofile.exe",
+        "args": ["--mcp"]
+      }
+    }
+  }
+}
