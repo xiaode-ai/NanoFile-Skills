@@ -2,13 +2,13 @@
   "openapi": "3.1.0",
   "info": {
     "title": "NanoFile Agent Plugin API",
-    "description": "OpenAPI specification for NanoFile local filesystem operations, lightning search, and privacy vault.",
+    "description": "OpenAPI function-calling schema for NanoFile local filesystem operations. Native desktop NanoFile runs via standard MCP stdio ('nanofile.exe --mcp'). For web-hosted agents (OpenAI GPTs / Coze) connecting to local desktop, an MCP stdio-to-HTTP bridge is utilized.",
     "version": "1.0.0"
   },
   "servers": [
     {
       "url": "http://127.0.0.1:39281",
-      "description": "Local NanoFile Agent Bridge"
+      "description": "Local MCP-to-HTTP Bridge"
     }
   ],
   "paths": {

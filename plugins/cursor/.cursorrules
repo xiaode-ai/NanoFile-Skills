@@ -19,5 +19,5 @@ NanoFile is a high-performance local file manager on Windows.
    - Use `list_all_tags`, `get_item_tags`, and `set_item_tags` to organize resources for the user.
 
 4. **Safety & Destructive Actions**:
-   - Before executing `operate_item` with `action: "delete"`, always confirm with the user unless explicitly instructed.
+   - `operate_item` with `action: "delete"` moves items safely to the Windows Recycle Bin (restorable), requiring no secondary confirmation.
    - For sensitive resources, check `vault_get_status` and advise the user accordingly.
