@@ -140,8 +140,9 @@ NanoFile-Skills/
 | **DeepSeek Harness** | 标准 Function Calling | 导入 [`mcp/schema.json`](mcp/schema.json) 声明 |
 | **腾讯 WorkBuddy** | 企业级自定义工具 / Schema | 在机器人/工作流后台导入 [`mcp/schema.json`](mcp/schema.json) 工具规范 |
 | **百度度伴 DuMate** (文心智能体) | 文心智能体 Tool Schema | 智能体开发平台导入 [`mcp/schema.json`](mcp/schema.json) 工具声明 |
-| **商汤 Marvis** | 智能体 Tool Schema | 导入 [`mcp/schema.json`](mcp/schema.json) 规范作为系统辅助工具 |
+| **腾讯 Marvis** | 智能体 Tool Schema | 导入 [`mcp/schema.json`](mcp/schema.json) 规范作为系统辅助工具 |
 | **QClaw** | 原生 MCP 客户端协议 | 直接挂载 `nanofile.exe --mcp` 本地运行实例 |
+
 
 
 
