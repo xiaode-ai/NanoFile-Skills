@@ -14,12 +14,14 @@ description: Universal item search and lifecycle operations (move, copy, rename,
 
 ## 包含工具 (3 个)
 
-### 1. `search_items`
-通用项目检索，支持多种搜索方式（常用、全局、目录）和搜索模式（极速、实时）。
+### 1. `search_items` (唯一全能检索工具)
+全能项目检索，支持限定类型（全部/仅文件/仅文件夹）、扩展名后缀过滤、搜索范围与模式。
 ```json
 {
   "query": "invoice_2026",
-  "scope": "common",          // "common" (常用，默认) | "global" (全局) | "directory" (目录)
+  "item_type": "file",        // "all" (文件+文件夹，默认) | "file" (仅文件) | "folder" (仅文件夹)
+  "extensions": ["pdf", "xlsx"], // 可选，限定扩展名（如仅搜指定后缀文件）
+  "scope": "common",          // "common" (常用，默认) | "global" (全局全盘) | "directory" (目录)
   "directory_path": "D:\\Work", // 当 scope 为 "directory" 时提供
   "mode": "auto",             // "auto" (自适应) | "turbo" (极速) | "realtime" (实时)
   "max_results": 50

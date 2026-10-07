@@ -4,7 +4,7 @@
   "title": "NanoFile MCP Tools Specification",
   "tools": [
     {
-      "description": "Search for files and directories by keyword. Supports multiple scopes (common, global, directory) and modes (auto, turbo, realtime).",
+      "description": "Unified high-performance item search across files and directories. Supports item_type (all, file, folder) and extensions filter.",
       "inputSchema": {
         "properties": {
           "directory_path": {
@@ -36,6 +36,22 @@
               "directory"
             ],
             "type": "string"
+          },
+          "item_type": {
+            "type": "string",
+            "enum": [
+              "all",
+              "file",
+              "folder"
+            ],
+            "description": "Item type filter: all, file, or folder."
+          },
+          "extensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Optional file extension filters."
           }
         },
         "required": [
@@ -108,55 +124,6 @@
         "type": "object"
       },
       "name": "batch_operate_items"
-    },
-    {
-      "description": "Search specifically for files matching extensions and name filters. Supports scopes (common, global, directory) and modes (auto, turbo, realtime).",
-      "inputSchema": {
-        "properties": {
-          "directory_path": {
-            "description": "Target folder path if scope is 'directory'.",
-            "type": "string"
-          },
-          "extensions": {
-            "description": "Optional file extension filters (e.g. ['pdf', 'docx'])",
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "max_results": {
-            "description": "Max file results, default 50",
-            "type": "integer"
-          },
-          "mode": {
-            "description": "Search mode: 'turbo', 'realtime', or 'auto'.",
-            "enum": [
-              "auto",
-              "turbo",
-              "realtime"
-            ],
-            "type": "string"
-          },
-          "query": {
-            "description": "Search keyword in filename",
-            "type": "string"
-          },
-          "scope": {
-            "description": "Search scope: 'common' (frequently used locations), 'global' (all drives), or 'directory' (specific folder). Defaults to 'common'.",
-            "enum": [
-              "common",
-              "global",
-              "directory"
-            ],
-            "type": "string"
-          }
-        },
-        "required": [
-          "query"
-        ],
-        "type": "object"
-      },
-      "name": "search_files"
     },
     {
       "description": "Read the UTF-8 text content of a specified file with optional character limit.",
@@ -255,48 +222,6 @@
         "type": "object"
       },
       "name": "set_file_default_app"
-    },
-    {
-      "description": "Search specifically for folders/directories matching keyword. Supports scopes (common, global, directory) and modes (auto, turbo, realtime).",
-      "inputSchema": {
-        "properties": {
-          "directory_path": {
-            "description": "Target folder path if scope is 'directory'.",
-            "type": "string"
-          },
-          "max_results": {
-            "description": "Max results, default 50",
-            "type": "integer"
-          },
-          "mode": {
-            "description": "Search mode: 'turbo', 'realtime', or 'auto'.",
-            "enum": [
-              "auto",
-              "turbo",
-              "realtime"
-            ],
-            "type": "string"
-          },
-          "query": {
-            "description": "Search keyword in directory name",
-            "type": "string"
-          },
-          "scope": {
-            "description": "Search scope: 'common' (frequently used locations), 'global' (all drives), or 'directory' (specific folder). Defaults to 'common'.",
-            "enum": [
-              "common",
-              "global",
-              "directory"
-            ],
-            "type": "string"
-          }
-        },
-        "required": [
-          "query"
-        ],
-        "type": "object"
-      },
-      "name": "search_folders"
     },
     {
       "description": "List the direct contents of a folder with size and type info.",

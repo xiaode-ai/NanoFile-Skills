@@ -23,15 +23,14 @@ description: Connect your AI assistant to NanoFile for high-performance local fi
 
 ## 1. 7 大能力子技能结构
 
-NanoFile MCP 包含 29 个标准工具，严格对应 7 大业务能力体系：
-
+NanoFile MCP 包含 27 个标准工具，检索能力全盘收拢于 `search_items`：
 
 ```
 NanoFile-Skills/
 ├── skills/
-│   ├── items/       # 1. 项目读写 (3 工具) - 通用检索与基础操作
-│   ├── files/       # 2. 文件读写 (6 工具) - 精准搜索、文本读写、打开方式与应用启动
-│   ├── folders/     # 3. 文件夹读写 (6 工具) - 目录检索、层级遍历、递归创建、默认打开方式
+│   ├── items/       # 1. 项目读写 (3 工具) - 全能检索 (支持文件/文件夹/扩展名) 与基础操作
+│   ├── files/       # 2. 文件读写 (5 工具) - 文本读写、打开方式与应用启动
+│   ├── folders/     # 3. 文件夹读写 (5 工具) - 层级遍历、递归创建、默认打开方式
 │   ├── tags/        # 4. 标签读写 (6 工具) - 标签列表管理、重命名、删除、单项标签绑定
 │   ├── metadata/    # 5. 元数据读取 (2 工具) - 属性、文件夹大小/项目数统计、文本度量
 │   ├── apps/        # 6. 应用程序读写 (3 工具) - 系统应用枚举、安全启动、合规卸载
@@ -41,8 +40,8 @@ NanoFile-Skills/
 | # | 能力域 | 专项子技能 | 核心工具清单 | 工具数 |
 | :-: | :--- | :--- | :--- | :-: |
 | **1** | **项目读写** | [`skills/items`](skills/items/SKILL.md) | `search_items`, `operate_item`, `batch_operate_items` | 3 |
-| **2** | **文件读写** | [`skills/files`](skills/files/SKILL.md) | `search_files`, `read_file_content`, `write_file_content`, `open_file`, `get_file_default_app`, `set_file_default_app` | 6 |
-| **3** | **文件夹读写** | [`skills/folders`](skills/folders/SKILL.md) | `search_folders`, `list_folder_contents`, `create_folder`, `get_folder_default_app`, `set_folder_default_app`, `open_folder` | 6 |
+| **2** | **文件读写** | [`skills/files`](skills/files/SKILL.md) | `read_file_content`, `write_file_content`, `open_file`, `get_file_default_app`, `set_file_default_app` | 5 |
+| **3** | **文件夹读写** | [`skills/folders`](skills/folders/SKILL.md) | `list_folder_contents`, `create_folder`, `get_folder_default_app`, `set_folder_default_app`, `open_folder` | 5 |
 | **4** | **标签读写** | [`skills/tags`](skills/tags/SKILL.md) | `list_all_tags`, `delete_tag`, `rename_tag`, `get_item_tags`, `set_item_tags`, `remove_item_tags` | 6 |
 | **5** | **元数据读取** | [`skills/metadata`](skills/metadata/SKILL.md) | `get_item_metadata` (含文件夹递归大小及条目统计), `get_media_metadata` | 2 |
 | **6** | **应用程序读写** | [`skills/apps`](skills/apps/SKILL.md) | `search_apps`, `launch_app`, `uninstall_app` | 3 |
@@ -79,15 +78,14 @@ NanoFile-Skills/
 
 ---
 
-## 4. 全量工具速查 (32 个 Tools)
+## 4. 全量工具速查 (27 个 Tools)
 
 ### 1. 项目读写 (`skills/items`)
-- `search_items`：全局、常用或目录检索文件与文件夹。
+- `search_items`：**全能检索**。全局、常用或目录检索文件/文件夹；支持 `item_type`（all/file/folder）及 `extensions` 扩展名后缀过滤。
 - `operate_item`：移动、复制、重命名或移入回收站。
 - `batch_operate_items`：批量移动、复制或移入回收站。
 
 ### 2. 文件读写 (`skills/files`)
-- `search_files`：文件专用检索（支持扩展名集合过滤）。
 - `read_file_content`：读取 UTF-8 文本内容（最大字符数保护）。
 - `write_file_content`：创建或覆盖写入文本文件。
 - `open_file`：使用默认程序或指定应用打开文件。
@@ -95,7 +93,6 @@ NanoFile-Skills/
 - `set_file_default_app`：设置扩展名的默认打开程序。
 
 ### 3. 文件夹读写 (`skills/folders`)
-- `search_folders`：目录专用检索。
 - `list_folder_contents`：列出指定目录的直接子项目。
 - `create_folder`：递归创建多级目录。
 - `get_folder_default_app`：读取文件夹当前的默认打开方式。
