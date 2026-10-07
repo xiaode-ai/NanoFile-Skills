@@ -6,9 +6,14 @@ description: Connect your AI assistant to NanoFile for high-performance local fi
 # NanoFile Agent Skills (7 大核心能力全集)
 
 > ⚠️ **【Agent 极速直通执行守则】**（必须严格遵守，杜绝无意义试探与翻源码）：
-> 1. **若当前环境已注入原生 MCP 工具**（如 `nanofile_search_items` 或 `search_items`）：直接发起 Tool Call 调用，耗时仅需 10~30ms，**严禁使用命令行再次封装**。
-> 2. **若当前环境尚未挂载原生 MCP 工具**：直接使用系统终端执行命令，**绝对禁止**运行 `nanofile --help`（桌面版无此参数会卡住）、**绝对禁止**去查阅 `src-tauri` 源码求证；如需使用 NanoFile MCP 协议，通过标准 JSON 单行管道直调：
->    `bun -e "/* 直接发送 jsonrpc 调 NanoFile.exe --mcp */"`，一步到位，禁止超过 1 次试探！
+> 1. **首选原生 MCP 工具**：若环境已注册 Native MCP Tools（如 `search_items`），**直接发起 Tool Call**，10~30ms 内极速返回！
+> 2. **无 Native MCP 时的秒级直通调用**：直接在终端运行内置 CLI 代理脚本：
+>    `node scripts/nanofile_cli.mjs <tool_name> '<json_arguments>'`（或 `bun scripts/nanofile_cli.mjs ...`）
+>    **示例（搜索）**：`node scripts/nanofile_cli.mjs search_items '{"query":"文件名","scope":"global"}'`
+> 3. **绝对红线与禁忌**：
+>    - ❌ **严禁**运行 `nanofile --help`、`nanofile -h`（桌面 GUI 程序无此参数，会导致进程挂起超时 15s）。
+>    - ❌ **严禁**在仓库中查找 `nanofile-mcp.exe` 或查看 `src-tauri` 源码求证。
+>    - ❌ **严禁**重复试探，按照守则 1 或 2 执行，单步直出结果！
 
 ## 1. 7 大能力子技能结构
 
