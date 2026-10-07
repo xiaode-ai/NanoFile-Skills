@@ -6,7 +6,21 @@
 
 ## 🇨🇳 中文说明
 
-**NanoFile Skills** 是一套标准化的 AI 扩展协议与技能说明包。只需在 Windows 上安装 **NanoFile**，即可为 **Claude Desktop、Cursor、Cline、VS Code** 等各类 AI 助手无缝接入强大的本地文件系统控制、秒级文件检索、标签管理以及隐私保险箱调度能力！
+**NanoFile Skills** 是一套模块化、标准化的 AI 扩展协议与技能包体系。只需在 Windows 上安装 **NanoFile**，即可为 **Claude Desktop、Cursor、Cline、VS Code** 等各类 AI 助手无缝接入强大的本地文件系统控制、秒级文件检索、标签管理以及隐私保险箱调度能力！
+
+### 📂 能力分类一览 (5 大领域分类)
+
+为了便于各类 AI 智能体精准定位与低消耗调用，NanoFile 将 25 个 MCP 工具划分为 **5 大垂直子技能 (Sub-Skills)**：
+
+| 领域分类 | 专项子技能 | 核心能力 | 工具数 |
+| :--- | :--- | :--- | :---: |
+| 🔍 **检索与发现** | [`skills/search`](skills/search/SKILL.md) | 常用目录/全局全盘/指定路径毫秒级极速搜索，支持扩展名集合过滤 | 3 |
+| 📂 **文件与目录治理** | [`skills/filesystem`](skills/filesystem/SKILL.md) | UTF-8 文本安全读写、目录结构遍历、安全移入回收站（防误删）、属性提取 | 10 |
+| 🏷️ **智能标签体系** | [`skills/tagging`](skills/tagging/SKILL.md) | 为文件或文件夹读取、追加、修改与清除自定义标签 | 3 |
+| 🚀 **应用管理与导航** | [`skills/app-launcher`](skills/app-launcher/SKILL.md) | Windows 已安装应用检索与启动、系统快捷访问/收藏夹管理 | 6 |
+| 🔒 **隐私保险箱** | [`skills/privacy-vault`](skills/privacy-vault/SKILL.md) | 口令解锁建立临时内存会话、自动超时锁定（与 GUI 一致校验 Plus/Pro 会员） | 3 |
+
+---
 
 ### 📥 1. 获取 NanoFile 桌面应用
 
@@ -15,7 +29,7 @@ NanoFile 是一款本地优先的高性能文件管理器，所有核心功能�
 - 🛒 **微软应用商店直达 Web 链接**：[https://apps.microsoft.com/detail/9pgwd50gwcjw](https://apps.microsoft.com/detail/9pgwd50gwcjw)
 - ⚡ **一键唤起应用商店安装**：`ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
 
-> **提示**：安装应用后即可直接使用，无需配置任何 Node.js、Python 或环境依赖。
+> **提示**：安装应用后即可直接使用，无需配置任何 Node.js、Python 或外部环境依赖。
 
 ---
 
@@ -39,37 +53,22 @@ Windows 应用商店天然支持 **`AppExecutionAlias`（应用执行别名）**
 
 ---
 
-### 🛠️ 3. 开放能力速查 (25 个标准 MCP Tools)
-
-完整参数说明请参阅 [SKILL.md](SKILL.md)：
-
-| 业务域 | 开放工具 (Tools) | 功能亮点 |
-| :--- | :--- | :--- |
-| **项目域** | `search_items`<br/>`operate_item`<br/>`batch_operate_items` | 全局/常用/指定目录项目检索；移动、复制、重命名；删除统一进入回收站（防止物理意外损毁）。 |
-| **文件域** | `search_files`<br/>`read_file_content`<br/>`write_file_content`<br/>`open_file` | 按扩展名精准找文件；UTF-8 文本内容安全读写；调用默认程序打开。 |
-| **文件夹域** | `search_folders`<br/>`list_folder_contents`<br/>`create_folder`<br/>`open_folder` | 目录结构遍历；递归创建目录；在资源管理器或终端中打开定位。 |
-| **标签域** | `get_item_tags`<br/>`set_item_tags`<br/>`remove_item_tags` | 读取、追加、覆盖与清除文件/文件夹标签。 |
-| **元数据域** | `get_item_metadata`<br/>`get_media_metadata` | 获取大小、修改时间、只读/隐藏属性、代码行数与字符数。 |
-| **应用程序域** | `search_apps`<br/>`launch_app`<br/>`uninstall_app` | 检索已安装应用；启动应用；合规唤起系统应用卸载页。 |
-| **收藏夹域** | `get_favorites`<br/>`add_favorite`<br/>`remove_favorite` | 获取快速访问与收藏夹列表、添加或移除常用目录。 |
-| **保险箱域** | `vault_get_status`<br/>`vault_unlock_with_password`<br/>`vault_lock` | 输入密码校验解锁保险箱会话，与 GUI 一致校验 Plus/Pro 会员权限，超时自动重锁，支持主动锁定。 |
-
----
-
 ## 🌐 English Overview
 
-**NanoFile Skills** is the official AI Agent skill and Model Context Protocol (MCP) guide for [NanoFile](https://apps.microsoft.com/detail/9pgwd50gwcjw). It enables AI assistants (such as Claude Desktop, Cursor, Cline, and VS Code) to manage Windows local files with ultra-fast indexing, granular file/folder manipulation, tagging, and password-protected Privacy Vault operations.
+**NanoFile Skills** is the official modular AI Agent skill and Model Context Protocol (MCP) suite for [NanoFile](https://apps.microsoft.com/detail/9pgwd50gwcjw).
 
-### 📥 1. Installation
+### 📂 Categorized Sub-Skills
+- 🔍 **Search**: [`skills/search/SKILL.md`](skills/search/SKILL.md) (Ultra-fast search with scopes and modes)
+- 📂 **Filesystem**: [`skills/filesystem/SKILL.md`](skills/filesystem/SKILL.md) (Safe file read/write, directory navigation, recycle bin)
+- 🏷️ **Tagging**: [`skills/tagging/SKILL.md`](skills/tagging/SKILL.md) (Native custom tagging)
+- 🚀 **App Launcher**: [`skills/app-launcher/SKILL.md`](skills/app-launcher/SKILL.md) (Installed app search, launch, and favorites)
+- 🔒 **Privacy Vault**: [`skills/privacy-vault/SKILL.md`](skills/privacy-vault/SKILL.md) (Password-protected vault sessions, VIP license required)
 
-Install NanoFile directly from the Microsoft Store:
-- 🛒 **Store Web Link**: [https://apps.microsoft.com/detail/9pgwd50gwcjw](https://apps.microsoft.com/detail/9pgwd50gwcjw)
-- ⚡ **One-Click Store Protocol**: `ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
+### 📥 Installation
+- 🛒 **Microsoft Store**: [https://apps.microsoft.com/detail/9pgwd50gwcjw](https://apps.microsoft.com/detail/9pgwd50gwcjw)
+- ⚡ **Store Protocol**: `ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
 
-### ⚙️ 2. MCP Server Configuration
-
-Add to your `claude_desktop_config.json` or Cursor `settings.json`:
-
+### ⚙️ MCP Server Configuration
 ```json
 {
   "mcpServers": {
@@ -80,11 +79,6 @@ Add to your `claude_desktop_config.json` or Cursor `settings.json`:
   }
 }
 ```
-
-*Thanks to Windows Store `AppExecutionAlias`, no absolute executable path is required!*
-
-### 📖 3. Detailed Documentation
-For detailed schema and argument specifications, see [SKILL.md](SKILL.md).
 
 ---
 
