@@ -5,20 +5,21 @@ description: Connect your AI assistant to NanoFile for high-performance local fi
 
 # NanoFile Agent Skills (7 大核心能力全集)
 
-> ⚠️ **【Agent 极速直通执行守则】**（覆盖全量 29 个能力，必须严格遵守，杜绝无意义试探与翻源码）：
-> 1. **首选原生 MCP 工具**：若环境已注册 Native MCP Tools（如 `search_items`, `list_all_tags`, `get_favorites` 等）：**直接发起原生 Tool Call**，10~30ms 内极速返回！
-> 2. **无 Native MCP 时的秒级直通调用**：所有 29 项能力统一直接在终端运行内置 CLI 代理脚本：
->    `node scripts/nanofile_cli.mjs <tool_name> '<json_arguments>'`（或 `bun scripts/nanofile_cli.mjs ...`）
->    - **搜索文件**：`node scripts/nanofile_cli.mjs search_items '{"query":"报告","scope":"global"}'`
->    - **查看收藏夹**：`node scripts/nanofile_cli.mjs get_favorites`
->    - **查看标签库**：`node scripts/nanofile_cli.mjs list_all_tags`
->    - **读取文件内容**：`node scripts/nanofile_cli.mjs read_file_content '{"path":"D:\\doc.txt"}'`
->    - **列出文件夹**：`node scripts/nanofile_cli.mjs list_folder_contents '{"path":"D:\\Work"}'`
->    - **检索已装应用**：`node scripts/nanofile_cli.mjs search_apps '{"query":"VS Code"}'`
-> 3. **绝对红线与禁忌**：
->    - ❌ **严禁**运行 `nanofile --help`、`nanofile -h`（桌面 GUI 程序无此参数，会导致进程挂起超时 15s）。
->    - ❌ **严禁**在仓库中查找 `nanofile-mcp.exe` 或查看 `src-tauri` 源码求证。
->    - ❌ **严禁**重复试探，按照守则 1 或 2 执行，单步直出结果！
+> ⚠️ **【Agent 极速直通执行守则（最高执行优先级）】**：
+> 1. **一步直出，严禁连环试探 (Single-Step Execution)**：
+>    - 无论是搜索还是读取，**只需调用 1 次工具**！
+>    - **严禁**：在一次用户指令中连续尝试 `search_files`、`search_items`、又跑去遍历个人目录、又去搜某个特定文件夹！
+> 2. **零结果即事实，严禁疑病式排查 (Ground Truth / Zero-Fallback)**：
+>    - NanoFile 采用底层的 NTFS 极速索引，**返回结果即最终权威事实**。
+>    - 若返回结果为 `[]`（空数组），说明电脑中**确实不存在该文件**！**必须立即停止**，直接向用户如实汇报“未找到包含 ## 的文件”。
+>    - ❌ **严禁**因为返回空就怀疑工具失效、❌ **严禁**自行调用 PowerShell/cmd/dir 磁盘遍历兜底、❌ **严禁**反复更换参数试探！
+> 3. **极速调用路径**：
+>    - 若环境有 Native MCP 工具（如 `search_items`）：**直接发起 1 次 Tool Call**，随后立即结束！
+>    - 若环境无 Native MCP 工具：运行 `node scripts/nanofile_cli.mjs <tool_name> '<json_arguments>'`，拿到输出后立即结束！
+> 4. **绝对红线与禁忌**：
+>    - ❌ **严禁**运行 `nanofile --help`、`nanofile -h`。
+>    - ❌ **严禁**查阅源码或寻找 `nanofile-mcp.exe`。
+>    - ❌ **严禁任何形式的重试循环与背景任务轮询**！
 
 ## 1. 7 大能力子技能结构
 
