@@ -191,13 +191,15 @@ Remove a folder path from favorites.
 
 ---
 
-### 4.8 Privacy Vault (Master Password Session)
+### 4.8 Privacy Vault (Master Password Session & VIP Required)
+
+> **Note**: Privacy Vault operations require an active NanoFile Plus / Pro subscription (identical to GUI mode). If the user does not have a subscription, the tool will return a friendly error with the Microsoft Store subscription link.
 
 #### `vault_get_status`
-Check the lock status and session TTL of the Privacy Vault.
+Check the lock status, session TTL, and VIP subscription state of the Privacy Vault.
 
 #### `vault_unlock_with_password`
-Unlock the Privacy Vault using the user-provided master password.
+Unlock the Privacy Vault using the user-provided master password. Requires an active NanoFile VIP subscription.
 - `password` *(string, required)*: Master password.
 
 #### `vault_lock`

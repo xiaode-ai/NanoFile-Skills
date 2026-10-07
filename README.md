@@ -52,7 +52,7 @@ Windows 应用商店天然支持 **`AppExecutionAlias`（应用执行别名）**
 | **元数据域** | `get_item_metadata`<br/>`get_media_metadata` | 获取大小、修改时间、只读/隐藏属性、代码行数与字符数。 |
 | **应用程序域** | `search_apps`<br/>`launch_app`<br/>`uninstall_app` | 检索已安装应用；启动应用；合规唤起系统应用卸载页。 |
 | **收藏夹域** | `get_favorites`<br/>`add_favorite`<br/>`remove_favorite` | 获取快速访问与收藏夹列表、添加或移除常用目录。 |
-| **保险箱域** | `vault_get_status`<br/>`vault_unlock_with_password`<br/>`vault_lock` | 输入密码校验解锁保险箱会话，超时自动重锁，支持主动锁定。 |
+| **保险箱域** | `vault_get_status`<br/>`vault_unlock_with_password`<br/>`vault_lock` | 输入密码校验解锁保险箱会话，与 GUI 一致校验 Plus/Pro 会员权限，超时自动重锁，支持主动锁定。 |
 
 ---
 
