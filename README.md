@@ -6,19 +6,22 @@
 
 ## 🇨🇳 中文说明
 
-**NanoFile Skills** 是一套模块化、标准化的 AI 扩展协议与技能包体系。只需在 Windows 上安装 **NanoFile**，即可为 **Claude Desktop、Cursor、Cline、VS Code** 等各类 AI 助手无缝接入强大的本地文件系统控制、秒级文件检索、标签管理以及隐私保险箱调度能力！
+**NanoFile Skills** 是一套标准化的 AI 扩展协议与技能说明包。只需在 Windows 上安装 **NanoFile**，即可为 **Claude Desktop、Cursor、Cline、VS Code** 等各类 AI 助手无缝接入强大的本地文件系统控制、秒级文件检索、标签管理以及隐私保险箱调度能力！
 
-### 📂 能力分类一览 (5 大领域分类)
+### 🛠️ 8 大核心能力分类速查
 
-为了便于各类 AI 智能体精准定位与低消耗调用，NanoFile 将 25 个 MCP 工具划分为 **5 大垂直子技能 (Sub-Skills)**：
+NanoFile 将 25 个 MCP 工具严格对齐为 **8 大业务能力分类**，每个分类均配备独立的专项子技能：
 
-| 领域分类 | 专项子技能 | 核心能力 | 工具数 |
-| :--- | :--- | :--- | :---: |
-| 🔍 **检索与发现** | [`skills/search`](skills/search/SKILL.md) | 常用目录/全局全盘/指定路径毫秒级极速搜索，支持扩展名集合过滤 | 3 |
-| 📂 **文件与目录治理** | [`skills/filesystem`](skills/filesystem/SKILL.md) | UTF-8 文本安全读写、目录结构遍历、安全移入回收站（防误删）、属性提取 | 10 |
-| 🏷️ **智能标签体系** | [`skills/tagging`](skills/tagging/SKILL.md) | 为文件或文件夹读取、追加、修改与清除自定义标签 | 3 |
-| 🚀 **应用管理与导航** | [`skills/app-launcher`](skills/app-launcher/SKILL.md) | Windows 已安装应用检索与启动、系统快捷访问/收藏夹管理 | 6 |
-| 🔒 **隐私保险箱** | [`skills/privacy-vault`](skills/privacy-vault/SKILL.md) | 口令解锁建立临时内存会话、自动超时锁定（与 GUI 一致校验 Plus/Pro 会员） | 3 |
+| # | 能力分类 | 专项子技能 | 核心职能 | 工具数 |
+| :-: | :--- | :--- | :--- | :-: |
+| **1** | **项目读写** | [`skills/items`](skills/items/SKILL.md) | 通用项目检索（常用/全局/目录范围，极速/实时模式）；移动、复制、重命名、移入回收站 | 3 |
+| **2** | **文件读写** | [`skills/files`](skills/files/SKILL.md) | 扩展名过滤文件检索；UTF-8 文本内容安全读写；默认关联程序打开 | 4 |
+| **3** | **文件夹读写** | [`skills/folders`](skills/folders/SKILL.md) | 目录专用检索；层级内容遍历；递归创建文件夹；在资源管理器/终端中打开 | 4 |
+| **4** | **标签读写** | [`skills/tags`](skills/tags/SKILL.md) | 读取文件/文件夹标签；追加/设置自定义标签；清除标签 | 3 |
+| **5** | **元数据读取** | [`skills/metadata`](skills/metadata/SKILL.md) | 读取文件大小、时间戳、只读状态；文本行数与字符数分析 | 2 |
+| **6** | **应用程序读写** | [`skills/apps`](skills/apps/SKILL.md) | 注册表桌面应用枚举；带参启动程序；合规唤起系统应用卸载页 | 3 |
+| **7** | **收藏夹读写** | [`skills/favorites`](skills/favorites/SKILL.md) | 查看快速访问与收藏夹列表；添加目录收藏（支持别名）；移除收藏 | 3 |
+| **8** | **保险箱管理** | [`skills/vault`](skills/vault/SKILL.md) | 状态查询；主密码校验解锁安全内存会话；立即锁死（与 GUI 一致校验 Plus/Pro 会员） | 3 |
 
 ---
 
@@ -57,12 +60,15 @@ Windows 应用商店天然支持 **`AppExecutionAlias`（应用执行别名）**
 
 **NanoFile Skills** is the official modular AI Agent skill and Model Context Protocol (MCP) suite for [NanoFile](https://apps.microsoft.com/detail/9pgwd50gwcjw).
 
-### 📂 Categorized Sub-Skills
-- 🔍 **Search**: [`skills/search/SKILL.md`](skills/search/SKILL.md) (Ultra-fast search with scopes and modes)
-- 📂 **Filesystem**: [`skills/filesystem/SKILL.md`](skills/filesystem/SKILL.md) (Safe file read/write, directory navigation, recycle bin)
-- 🏷️ **Tagging**: [`skills/tagging/SKILL.md`](skills/tagging/SKILL.md) (Native custom tagging)
-- 🚀 **App Launcher**: [`skills/app-launcher/SKILL.md`](skills/app-launcher/SKILL.md) (Installed app search, launch, and favorites)
-- 🔒 **Privacy Vault**: [`skills/privacy-vault/SKILL.md`](skills/privacy-vault/SKILL.md) (Password-protected vault sessions, VIP license required)
+### 🛠️ 8 Core Capabilities
+1. **Item Management**: [`skills/items/SKILL.md`](skills/items/SKILL.md) (Universal search, move, copy, rename, recycle)
+2. **File Management**: [`skills/files/SKILL.md`](skills/files/SKILL.md) (File search with extension filters, UTF-8 read/write, open file)
+3. **Folder Management**: [`skills/folders/SKILL.md`](skills/folders/SKILL.md) (Folder search, contents listing, create folder, open in Explorer/Terminal)
+4. **Tag Management**: [`skills/tags/SKILL.md`](skills/tags/SKILL.md) (Read, assign, and clear custom item tags)
+5. **Metadata Inspection**: [`skills/metadata/SKILL.md`](skills/metadata/SKILL.md) (Attributes, timestamps, line/character metrics)
+6. **Application Management**: [`skills/apps/SKILL.md`](skills/apps/SKILL.md) (Installed app search, launch with arguments, uninstall prompt)
+7. **Favorites Management**: [`skills/favorites/SKILL.md`](skills/favorites/SKILL.md) (List, add, and remove Quick Access bookmarks)
+8. **Privacy Vault**: [`skills/vault/SKILL.md`](skills/vault/SKILL.md) (Password-protected vault sessions, VIP Plus/Pro required)
 
 ### 📥 Installation
 - 🛒 **Microsoft Store**: [https://apps.microsoft.com/detail/9pgwd50gwcjw](https://apps.microsoft.com/detail/9pgwd50gwcjw)
