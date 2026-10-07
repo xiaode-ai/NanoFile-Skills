@@ -49,16 +49,19 @@ NanoFile-Skills/
 
 ---
 
-### 🧩 插件生态使用指引 (Plugins)
+### 🧩 各 Agent 平台真实插件标准支持 (Plugins)
 
-为不同生态的 Agent 提供了开箱即用的支持：
+本仓库为业界主流的 Agent 体系提供了**100% 官方规范原生对齐**的插件标准：
 
-| 平台 / 框架 | 插件形式 | 使用方法 |
-| :--- | :--- | :--- |
-| **Cursor / Windsurf** | [`.cursorrules`](plugins/cursor/.cursorrules) | 直接将文件拷贝到您的项目根目录，Agent 将自动感知并优先调度 NanoFile |
-| **Dify / Coze / FastGPT** | [`provider.yaml`](plugins/dify/provider.yaml) | 在平台后台“自定义工具”中导入该 YAML，即可在工作流节点中使用 NanoFile 工具 |
-| **LangChain / LlamaIndex** | [`toolkit.json`](plugins/langchain/toolkit.json) | 通过标准 Stdio 连接声明在 Python/TS 框架中实例化 `NanoFileToolkit` |
-| **通用 Agent 宿主** | [`manifest.json`](plugins/manifest.json) | 读取插件清单，动态获取支持的 32 个工具与技能元数据 |
+| Agent 生态 / 平台 | 官方插件规范标准 | 对应开源文件 | 使用方法 |
+| :--- | :--- | :--- | :--- |
+| **Smithery.ai / MCP Registry** | 官方 MCP 服务包清单标准 | [`smithery.yaml`](smithery.yaml) | 平台自动收录，开发者可通过 `npx -y @smithery/cli install nanofile` 一键注册 |
+| **Dify 1.0 官方插件体系** | 独立 Plugin + Provider + Tools 规范 | [`plugins/dify/manifest.yaml`](plugins/dify/manifest.yaml) | Dify 官方插件目录标准，支持在 Dify 平台一键打包与安装自定义工具插件 |
+| **OpenAI GPTs / 字节扣子 (Coze)** | OpenAPI 3.1.0 标准 Actions 协议 | [`plugins/openapi/openapi.json`](plugins/openapi/openapi.json) | 在 GPTs Actions 或 Coze 插件后台，直接导入该 OpenAPI JSON 即可生成全部动作 |
+| **Cursor / Windsurf / Copilot** | IDE 提示词规则与 Agent 上下文规约 | [`plugins/cursor/.cursorrules`](plugins/cursor/.cursorrules) | 直接将 `.cursorrules` 复制到项目根目录下，代码 Agent 即刻具备调用 NanoFile 的感知 |
+| **Claude / Antigravity Plugins** | 官方 Agent Plugin 标准清单 | [`plugin.json`](plugin.json) | 声明工具列表、技能路径与 MCP 服务关联，宿主自动装载 |
+| **LangChain / LlamaIndex / CrewAI** | Agent Toolkit 架构清单 | [`plugins/langchain/toolkit.json`](plugins/langchain/toolkit.json) | Python/TS 开发者依据参数快速实例化 `NanoFileToolkit` |
+
 
 ---
 

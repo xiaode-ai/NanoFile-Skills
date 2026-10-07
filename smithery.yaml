@@ -1,0 +1,9 @@
+startCommand:
+  type: "stdio"
+  config:
+    command: "nanofile.exe"
+    args:
+      - "--mcp"
+configSchema:
+  type: "object"
+  properties: {}

@@ -1,0 +1,56 @@
+identity:
+  name: search_items
+  author: NanoFile Team
+  label:
+    en_US: Search Items
+    zh_Hans: 通用项目搜索
+description:
+  human:
+    en_US: Lightning search across files and directories in Windows.
+    zh_Hans: 在 Windows 中秒级检索文件与文件夹。
+  llm: Search for files and folders on the Windows filesystem. Supports global, common, and directory scopes.
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query
+      zh_Hans: 搜索关键词
+    human_description:
+      en_US: Filename, keyword or pattern to search.
+      zh_Hans: 要检索的文件名或关键词。
+    llm_description: The search term or pattern to look for.
+  - name: scope
+    type: select
+    required: false
+    default: global
+    options:
+      - value: global
+        label:
+          en_US: Global (All Drives)
+          zh_Hans: 全盘搜索
+      - value: common
+        label:
+          en_US: Common Directories
+          zh_Hans: 常用目录
+      - value: directory
+        label:
+          en_US: Specific Directory
+          zh_Hans: 指定目录
+  - name: mode
+    type: select
+    required: false
+    default: auto
+    options:
+      - value: turbo
+        label:
+          en_US: Turbo Mode
+          zh_Hans: 极速模式
+      - value: realtime
+        label:
+          en_US: Realtime Mode
+          zh_Hans: 实时模式
+      - value: auto
+        label:
+          en_US: Auto
+          zh_Hans: 自动选择

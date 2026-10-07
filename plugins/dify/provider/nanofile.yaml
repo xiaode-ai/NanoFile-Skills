@@ -1,0 +1,15 @@
+identity:
+  name: nanofile
+  author: NanoFile Team
+  label:
+    en_US: NanoFile Native Toolset
+    zh_Hans: NanoFile 本地工具集
+  description:
+    en_US: High-performance Windows filesystem manager, search, metadata, and vault provider.
+    zh_Hans: 高性能 Windows 本地文件管理、极速搜索、递归元数据与隐私保险箱提供商。
+  icon: icon.svg
+credentials_schema: []
+tools:
+  - tools/search_items.yaml
+  - tools/read_file_content.yaml
+  - tools/get_item_metadata.yaml

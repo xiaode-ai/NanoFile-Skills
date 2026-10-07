@@ -1,0 +1,33 @@
+identity:
+  name: read_file_content
+  author: NanoFile Team
+  label:
+    en_US: Read File Content
+    zh_Hans: 读取文件内容
+description:
+  human:
+    en_US: Read UTF-8 text content of a local file safely.
+    zh_Hans: 安全读取本地文件的 UTF-8 文本内容。
+  llm: Read the textual content of a local file safely.
+parameters:
+  - name: path
+    type: string
+    required: true
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+    human_description:
+      en_US: Absolute path to the file.
+      zh_Hans: 文件的绝对路径。
+    llm_description: The absolute file path to read from.
+  - name: max_bytes
+    type: number
+    required: false
+    default: 262144
+    label:
+      en_US: Max Bytes
+      zh_Hans: 最大读取字节数
+    human_description:
+      en_US: Upper limit of bytes to read (default: 256KB).
+      zh_Hans: 最大读取字节上限（默认 256KB）。
+    llm_description: Maximum number of bytes to read.

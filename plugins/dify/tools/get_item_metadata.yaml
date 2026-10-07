@@ -1,0 +1,22 @@
+identity:
+  name: get_item_metadata
+  author: NanoFile Team
+  label:
+    en_US: Get Item Metadata
+    zh_Hans: 获取项目元数据
+description:
+  human:
+    en_US: Retrieve full metadata for a file or directory, including recursive folder size and item count.
+    zh_Hans: 获取文件或目录的完整元数据，支持文件夹递归大小与条目数量统计。
+  llm: Inspect filesystem metadata. Automatically computes total recursive directory byte size and child count.
+parameters:
+  - name: path
+    type: string
+    required: true
+    label:
+      en_US: Target Path
+      zh_Hans: 目标路径
+    human_description:
+      en_US: Absolute path to the file or directory.
+      zh_Hans: 文件或目录的绝对路径。
+    llm_description: The absolute target path to inspect.
