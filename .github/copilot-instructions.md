@@ -8,4 +8,4 @@ When assisting with local file management, lightning filesystem search, tags, or
    - `write_file_content`: Atomic file writing.
    - `get_item_metadata`: Comprehensive metadata and recursive directory size.
 2. Delete operations (`action: "delete"`) move items safely to the Windows Recycle Bin (restorable, no confirmation needed).
-3. Vault operations (`vault_get_status`, `vault_unlock`, `vault_lock`) require security awareness.
+

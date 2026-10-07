@@ -31,7 +31,7 @@ NanoFile-Skills/
 │   ├── dify/provider.yaml    # Dify / Coze / FastGPT 低代码平台自定义工具提供商声明
 │   └── langchain/toolkit.json # LangChain / LlamaIndex / CrewAI 工具包集成声明
 ├── mcp/                      # 🤖 2. 机器协议层 (MCP Server Protocol Specification)
-│   ├── schema.json           # 32 个工具的标准 JSON Schema（供各大 MCP Registry / 插件市场自动索引）
+│   ├── schema.json           # 29 个工具的标准 JSON Schema（供各大 MCP Registry / 插件市场自动索引）
 │   └── config.example.json   # Claude Desktop / Cursor / Cline / Windsurf 接入范例
 ├── skills/                   # 🧠 3. 智能认知层 (Modular Agent Skills Instructions)
 │   ├── items/SKILL.md        # 1. 项目读写 (通用搜索、复制、移动、重命名、删除)
@@ -40,8 +40,7 @@ NanoFile-Skills/
 │   ├── tags/SKILL.md         # 4. 标签读写 (标签库维护、多标签读写与关联管理)
 │   ├── metadata/SKILL.md     # 5. 元数据读取 (属性读取、文件夹递归总大小与数量统计)
 │   ├── apps/SKILL.md         # 6. 应用程序读写 (已安装应用检索、安全带参启动、卸载唤起)
-│   ├── favorites/SKILL.md    # 7. 收藏夹读写 (快速访问书签获取、添加、移除)
-│   └── vault/SKILL.md        # 8. 保险箱管理 (状态查询、密码解锁、内存凭据秒级锁定)
+│   └── favorites/SKILL.md    # 7. 收藏夹读写 (快速访问书签获取、添加、移除)
 ├── SKILL.md                  # 全局 Master 技能总览 (可供外部 AI 宿主一键整体挂载)
 ├── README.md                 # 官方导航与接入说明
 └── LICENSE                   # MIT 开源许可证
@@ -65,7 +64,7 @@ NanoFile-Skills/
 
 ---
 
-### 🛠️ 8 大核心能力速查 (32 个标准 MCP Tools)
+### 🛠️ 7 大核心能力速查 (29 个标准 MCP Tools)
 
 | # | 能力分类 | 专项子技能 | 核心职能与代表工具 | 工具数 |
 | :-: | :--- | :--- | :--- | :-: |
@@ -76,7 +75,7 @@ NanoFile-Skills/
 | **5** | **元数据读取** | [`skills/metadata`](skills/metadata/SKILL.md) | `get_item_metadata` (含文件夹递归总大小与条目数量统计); `get_media_metadata` | 2 |
 | **6** | **应用程序读写** | [`skills/apps`](skills/apps/SKILL.md) | `search_apps`; `launch_app`; `uninstall_app` | 3 |
 | **7** | **收藏夹读写** | [`skills/favorites`](skills/favorites/SKILL.md) | `get_favorites`; `add_favorite`; `remove_favorite` | 3 |
-| **8** | **保险箱管理** | [`skills/vault`](skills/vault/SKILL.md) | `vault_get_status`; `vault_unlock`; `vault_lock` | 3 |
+
 
 ---
 

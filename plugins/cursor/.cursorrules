@@ -20,4 +20,4 @@ NanoFile is a high-performance local file manager on Windows.
 
 4. **Safety & Destructive Actions**:
    - `operate_item` with `action: "delete"` moves items safely to the Windows Recycle Bin (restorable), requiring no secondary confirmation.
-   - For sensitive resources, check `vault_get_status` and advise the user accordingly.
+

@@ -11,8 +11,7 @@
     "skills/tags",
     "skills/metadata",
     "skills/apps",
-    "skills/favorites",
-    "skills/vault"
+    "skills/favorites"
   ],
   "mcpServers": {
     "nanofile": {

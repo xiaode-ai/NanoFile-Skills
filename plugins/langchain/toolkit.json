@@ -31,10 +31,6 @@
     {
       "name": "FavoritesToolkit",
       "tools": ["get_favorites", "add_favorite", "remove_favorite"]
-    },
-    {
-      "name": "VaultToolkit",
-      "tools": ["vault_get_status", "vault_unlock", "vault_lock"]
     }
   ]
 }

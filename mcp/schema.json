@@ -342,33 +342,6 @@
         },
         "required": ["path"]
       }
-    },
-    {
-      "name": "vault_get_status",
-      "description": "Query current privacy vault lock state and configuration.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    {
-      "name": "vault_unlock",
-      "description": "Unlock privacy vault with password.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "password": { "type": "string", "description": "Vault password" }
-        },
-        "required": ["password"]
-      }
-    },
-    {
-      "name": "vault_lock",
-      "description": "Instantly lock privacy vault and purge decryption keys from memory.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {}
-      }
     }
   ]
 }

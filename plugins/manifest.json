@@ -26,10 +26,9 @@
     { "id": "tags", "name": "Tag Management", "tools": 6, "skill": "../skills/tags/SKILL.md" },
     { "id": "metadata", "name": "Metadata & Recursive Size", "tools": 2, "skill": "../skills/metadata/SKILL.md" },
     { "id": "apps", "name": "Application Management", "tools": 3, "skill": "../skills/apps/SKILL.md" },
-    { "id": "favorites", "name": "Favorites & Quick Access", "tools": 3, "skill": "../skills/favorites/SKILL.md" },
-    { "id": "vault", "name": "Privacy Vault", "tools": 3, "skill": "../skills/vault/SKILL.md" }
+    { "id": "favorites", "name": "Favorites & Quick Access", "tools": 3, "skill": "../skills/favorites/SKILL.md" }
   ],
-  "toolCount": 32,
+  "toolCount": 29,
   "pluginIntegrations": {
     "smithery_mcp": "../smithery.yaml",
     "antigravity_claude": "../plugin.json",

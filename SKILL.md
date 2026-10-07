@@ -20,8 +20,7 @@ NanoFile-Skills/
 │   ├── tags/        # 4. 标签读写 (6 工具) - 标签列表管理、重命名、删除、单项标签绑定
 │   ├── metadata/    # 5. 元数据读取 (2 工具) - 属性、文件夹大小/项目数统计、文本度量
 │   ├── apps/        # 6. 应用程序读写 (3 工具) - 系统应用枚举、安全启动、合规卸载
-│   ├── favorites/   # 7. 收藏夹读写 (3 工具) - 快速访问与目录收藏管理
-│   └── vault/       # 8. 保险箱管理 (3 工具) - 查询状态、输入密码解锁、锁定
+│   └── favorites/   # 7. 收藏夹读写 (3 工具) - 快速访问与目录收藏管理
 ```
 
 | # | 能力域 | 专项子技能 | 核心工具清单 | 工具数 |
@@ -33,7 +32,7 @@ NanoFile-Skills/
 | **5** | **元数据读取** | [`skills/metadata`](skills/metadata/SKILL.md) | `get_item_metadata` (含文件夹递归大小及条目统计), `get_media_metadata` | 2 |
 | **6** | **应用程序读写** | [`skills/apps`](skills/apps/SKILL.md) | `search_apps`, `launch_app`, `uninstall_app` | 3 |
 | **7** | **收藏夹读写** | [`skills/favorites`](skills/favorites/SKILL.md) | `get_favorites`, `add_favorite`, `remove_favorite` | 3 |
-| **8** | **保险箱管理** | [`skills/vault`](skills/vault/SKILL.md) | `vault_get_status`, `vault_unlock`, `vault_lock` | 3 |
+
 
 ---
 
@@ -109,11 +108,6 @@ NanoFile-Skills/
 - `get_favorites`：获取快速访问与收藏夹列表。
 - `add_favorite`：添加目录到收藏夹（支持设置别名）。
 - `remove_favorite`：从收藏夹中移除目录。
-
-### 8. 保险箱管理 (`skills/vault`)
-- `vault_get_status`：查询保险箱锁定状态与会话剩余时间。
-- `vault_unlock`：输入密码解锁保险箱。
-- `vault_lock`：锁定保险箱。
 
 ---
 

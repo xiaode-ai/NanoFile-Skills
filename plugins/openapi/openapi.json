@@ -109,15 +109,6 @@
           "200": { "description": "Item metadata" }
         }
       }
-    },
-    "/api/vault/status": {
-      "get": {
-        "operationId": "getVaultStatus",
-        "summary": "Query current privacy vault lock state",
-        "responses": {
-          "200": { "description": "Vault lock status" }
-        }
-      }
     }
   }
 }
