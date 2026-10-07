@@ -57,7 +57,7 @@ NanoFile-Skills/
 
 ---
 
-### 📥 1. 获取 NanoFile 桌面应用 (底层原生驱动)
+### 📥 1. 安装 NanoFile 桌面应用 (底层原生驱动)
 
 所有 MCP 工具调用均由底层的 NanoFile 原生引擎驱动，零环境依赖：
 
