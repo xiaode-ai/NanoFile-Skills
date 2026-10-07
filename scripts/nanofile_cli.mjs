@@ -55,8 +55,8 @@ export function callMcp(toolName, args) {
 
     setTimeout(() => {
       child.kill();
-      reject(new Error('NanoFile MCP 调用超时 (2000ms)'));
-    }, 3000);
+      reject(new Error('NanoFile MCP 调用超时 (15000ms)'));
+    }, 15000);
 
     // 握手包
     const initReq = JSON.stringify({
