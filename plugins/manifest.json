@@ -33,7 +33,6 @@
     "smithery_mcp": "../smithery.yaml",
     "antigravity_claude": "../plugin.json",
     "dify_plugin": "./dify/manifest.yaml",
-    "openapi_gpts_coze": "./openapi/openapi.json",
     "cursor_rules": "./cursor/.cursorrules",
     "langchain_toolkit": "./langchain/toolkit.json"
   }

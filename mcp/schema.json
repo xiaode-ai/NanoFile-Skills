@@ -1,347 +1,621 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "NanoFile MCP Tools Specification",
   "description": "Complete Model Context Protocol (MCP) tool declarations for NanoFile Desktop",
+  "title": "NanoFile MCP Tools Specification",
   "tools": [
     {
-      "name": "search_items",
-      "description": "Unified lightning search across both files and folders with selectable scope and speed modes.",
+      "description": "Search for files and directories by keyword. Supports multiple scopes (common, global, directory) and modes (auto, turbo, realtime).",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "query": { "type": "string", "description": "Keyword, filename, or pattern to search" },
-          "scope": { "type": "string", "enum": ["common", "global", "directory"], "description": "Search scope (default: global)" },
-          "directory": { "type": "string", "description": "Target root folder when scope is directory" },
-          "mode": { "type": "string", "enum": ["turbo", "realtime", "auto"], "description": "Search speed engine (default: auto)" },
-          "limit": { "type": "integer", "description": "Max results to return (default: 50)" }
+          "directory_path": {
+            "description": "Target folder path if scope is 'directory'.",
+            "type": "string"
+          },
+          "max_results": {
+            "description": "Maximum number of items to return, default 50",
+            "type": "integer"
+          },
+          "mode": {
+            "description": "Search mode: 'turbo' (in-memory fast index), 'realtime' (live disk scan), or 'auto' (follow application state). Defaults to 'auto'.",
+            "enum": [
+              "auto",
+              "turbo",
+              "realtime"
+            ],
+            "type": "string"
+          },
+          "query": {
+            "description": "The search keyword or name fragment",
+            "type": "string"
+          },
+          "scope": {
+            "description": "Search scope: 'common' (frequently used locations like Desktop, Documents, Downloads), 'global' (all drives), or 'directory' (specific target folder). Defaults to 'common'.",
+            "enum": [
+              "common",
+              "global",
+              "directory"
+            ],
+            "type": "string"
+          }
         },
-        "required": ["query"]
-      }
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "name": "search_items"
     },
     {
-      "name": "operate_item",
-      "description": "Perform single file or folder operation (copy, move, rename, delete).",
+      "description": "Perform safe lifecycle operations on a file or folder: move, copy, rename, or recycle (move to Trash).",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "action": { "type": "string", "enum": ["copy", "move", "rename", "delete"], "description": "Action type" },
-          "source": { "type": "string", "description": "Target file or folder absolute path" },
-          "destination": { "type": "string", "description": "Destination folder or new path (for copy/move)" },
-          "new_name": { "type": "string", "description": "New item name (required for rename)" }
+          "operation": {
+            "description": "Action to perform",
+            "enum": [
+              "move",
+              "copy",
+              "rename",
+              "recycle"
+            ],
+            "type": "string"
+          },
+          "source_path": {
+            "description": "Absolute path to source file or folder",
+            "type": "string"
+          },
+          "target_path": {
+            "description": "Destination path or new name (required for move, copy, rename)",
+            "type": "string"
+          }
         },
-        "required": ["action", "source"]
-      }
+        "required": [
+          "operation",
+          "source_path"
+        ],
+        "type": "object"
+      },
+      "name": "operate_item"
     },
     {
-      "name": "batch_operate_items",
-      "description": "Batch operation on multiple files or folders.",
+      "description": "Perform batch lifecycle operations on multiple files or folders: move, copy, or recycle.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "action": { "type": "string", "enum": ["copy", "move", "delete"], "description": "Batch action type" },
-          "sources": { "type": "array", "items": { "type": "string" }, "description": "List of source paths" },
-          "destination": { "type": "string", "description": "Target folder for copy/move" }
+          "destination_directory": {
+            "description": "Target folder for move or copy operations",
+            "type": "string"
+          },
+          "operation": {
+            "description": "Batch action to perform",
+            "enum": [
+              "move",
+              "copy",
+              "recycle"
+            ],
+            "type": "string"
+          },
+          "source_paths": {
+            "description": "List of absolute paths",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
         },
-        "required": ["action", "sources"]
-      }
+        "required": [
+          "operation",
+          "source_paths"
+        ],
+        "type": "object"
+      },
+      "name": "batch_operate_items"
     },
     {
-      "name": "search_files",
-      "description": "Search specifically for files with extension filter.",
+      "description": "Search specifically for files matching extensions and name filters. Supports scopes (common, global, directory) and modes (auto, turbo, realtime).",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "query": { "type": "string", "description": "Search keyword" },
-          "extension": { "type": "string", "description": "Optional extension filter, e.g. pdf, txt, rust" },
-          "scope": { "type": "string", "enum": ["common", "global", "directory"], "description": "Search scope (default: global)" },
-          "directory": { "type": "string", "description": "Root path when scope is directory" },
-          "mode": { "type": "string", "enum": ["turbo", "realtime", "auto"], "description": "Speed mode (default: auto)" },
-          "limit": { "type": "integer", "description": "Max count (default: 50)" }
+          "directory_path": {
+            "description": "Target folder path if scope is 'directory'.",
+            "type": "string"
+          },
+          "extensions": {
+            "description": "Optional file extension filters (e.g. ['pdf', 'docx'])",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "max_results": {
+            "description": "Max file results, default 50",
+            "type": "integer"
+          },
+          "mode": {
+            "description": "Search mode: 'turbo', 'realtime', or 'auto'.",
+            "enum": [
+              "auto",
+              "turbo",
+              "realtime"
+            ],
+            "type": "string"
+          },
+          "query": {
+            "description": "Search keyword in filename",
+            "type": "string"
+          },
+          "scope": {
+            "description": "Search scope: 'common' (frequently used locations), 'global' (all drives), or 'directory' (specific folder). Defaults to 'common'.",
+            "enum": [
+              "common",
+              "global",
+              "directory"
+            ],
+            "type": "string"
+          }
         },
-        "required": ["query"]
-      }
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "name": "search_files"
     },
     {
-      "name": "read_file_content",
-      "description": "Read file text content safely with maximum byte size guard.",
+      "description": "Read the UTF-8 text content of a specified file with optional character limit.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "Target file absolute path" },
-          "max_bytes": { "type": "integer", "description": "Maximum bytes to read (default 256KB)" }
+          "max_characters": {
+            "description": "Max characters to read (default 50000)",
+            "type": "integer"
+          },
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "read_file_content"
     },
     {
-      "name": "write_file_content",
-      "description": "Create or overwrite file with text content.",
+      "description": "Create or overwrite a file with UTF-8 text content.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "Target file absolute path" },
-          "content": { "type": "string", "description": "UTF-8 content string to write" }
+          "content": {
+            "description": "Text content to write",
+            "type": "string"
+          },
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          }
         },
-        "required": ["path", "content"]
-      }
+        "required": [
+          "path",
+          "content"
+        ],
+        "type": "object"
+      },
+      "name": "write_file_content"
     },
     {
-      "name": "open_file",
-      "description": "Open file using system default program or specified application.",
+      "description": "Open a file using system default program or specified application.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "File absolute path" },
-          "app_path": { "type": "string", "description": "Optional application executable path" }
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          },
+          "with_app": {
+            "description": "Optional path or executable name of the app to launch with",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "open_file"
     },
     {
-      "name": "get_file_default_app",
-      "description": "Get current Windows default application association for a file or extension.",
+      "description": "Get the default open application for a specific file extension or file path.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "extension_or_path": { "type": "string", "description": "Extension (e.g. .pdf) or full file path" }
+          "extension_or_path": {
+            "description": "File extension (e.g. '.pdf', 'txt') or full file path",
+            "type": "string"
+          }
         },
-        "required": ["extension_or_path"]
-      }
+        "required": [
+          "extension_or_path"
+        ],
+        "type": "object"
+      },
+      "name": "get_file_default_app"
     },
     {
-      "name": "set_file_default_app",
-      "description": "Set default application association for a file extension.",
+      "description": "Set the default opening application for a specific file extension.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "extension": { "type": "string", "description": "File extension, e.g. .txt, .pdf" },
-          "prog_id_or_app_path": { "type": "string", "description": "Application ProgID or absolute executable path" }
+          "app_path": {
+            "description": "Executable path or registered application name",
+            "type": "string"
+          },
+          "extension": {
+            "description": "File extension (e.g. '.pdf' or 'pdf')",
+            "type": "string"
+          }
         },
-        "required": ["extension", "prog_id_or_app_path"]
-      }
+        "required": [
+          "extension",
+          "app_path"
+        ],
+        "type": "object"
+      },
+      "name": "set_file_default_app"
     },
     {
-      "name": "search_folders",
-      "description": "Search specifically for folders/directories across the filesystem.",
+      "description": "Search specifically for folders/directories matching keyword. Supports scopes (common, global, directory) and modes (auto, turbo, realtime).",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "query": { "type": "string", "description": "Folder name query" },
-          "scope": { "type": "string", "enum": ["common", "global", "directory"], "description": "Search scope (default: global)" },
-          "directory": { "type": "string", "description": "Root path when scope is directory" },
-          "mode": { "type": "string", "enum": ["turbo", "realtime", "auto"], "description": "Speed mode (default: auto)" },
-          "limit": { "type": "integer", "description": "Max count (default: 50)" }
+          "directory_path": {
+            "description": "Target folder path if scope is 'directory'.",
+            "type": "string"
+          },
+          "max_results": {
+            "description": "Max results, default 50",
+            "type": "integer"
+          },
+          "mode": {
+            "description": "Search mode: 'turbo', 'realtime', or 'auto'.",
+            "enum": [
+              "auto",
+              "turbo",
+              "realtime"
+            ],
+            "type": "string"
+          },
+          "query": {
+            "description": "Search keyword in directory name",
+            "type": "string"
+          },
+          "scope": {
+            "description": "Search scope: 'common' (frequently used locations), 'global' (all drives), or 'directory' (specific folder). Defaults to 'common'.",
+            "enum": [
+              "common",
+              "global",
+              "directory"
+            ],
+            "type": "string"
+          }
         },
-        "required": ["query"]
-      }
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "name": "search_folders"
     },
     {
-      "name": "list_folder_contents",
-      "description": "List immediate files and subfolders inside a directory.",
+      "description": "List the direct contents of a folder with size and type info.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "Folder absolute path" },
-          "include_hidden": { "type": "boolean", "description": "Include hidden items (default: false)" },
-          "limit": { "type": "integer", "description": "Maximum items to return (default: 200)" }
+          "include_hidden": {
+            "description": "Whether to list hidden items (default false)",
+            "type": "boolean"
+          },
+          "path": {
+            "description": "Absolute directory path",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "list_folder_contents"
     },
     {
-      "name": "create_folder",
-      "description": "Create a new folder (including parent directories).",
+      "description": "Create a directory recursively at the specified path.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "Folder absolute path to create" }
+          "path": {
+            "description": "Absolute directory path to create",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "create_folder"
     },
     {
-      "name": "open_folder",
-      "description": "Open folder in Windows Explorer or configured file manager.",
+      "description": "Get the default opening application/handler configured for directories.",
       "inputSchema": {
-        "type": "object",
+        "properties": {},
+        "type": "object"
+      },
+      "name": "get_folder_default_app"
+    },
+    {
+      "description": "Set the default opening application or tool for opening directories (e.g. 'nanofile', 'explorer', 'terminal', or custom app path).",
+      "inputSchema": {
         "properties": {
-          "path": { "type": "string", "description": "Folder absolute path to open" }
+          "app": {
+            "description": "Application identifier: 'nanofile', 'explorer', 'terminal', or an executable path",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "app"
+        ],
+        "type": "object"
+      },
+      "name": "set_folder_default_app"
     },
     {
-      "name": "get_folder_default_app",
-      "description": "Get current Windows default file manager application for opening folders.",
+      "description": "Open or reveal a folder using the default configured application or explicitly specified target (nanofile, explorer, terminal, or custom app).",
       "inputSchema": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    {
-      "name": "set_folder_default_app",
-      "description": "Set default application for opening folders in Windows.",
-      "inputSchema": {
-        "type": "object",
         "properties": {
-          "prog_id_or_app_path": { "type": "string", "description": "Target file manager ProgID or executable path" }
+          "path": {
+            "description": "Absolute directory path",
+            "type": "string"
+          },
+          "target": {
+            "description": "Optional open target ('default', 'nanofile', 'explorer', 'terminal', or executable path)",
+            "type": "string"
+          }
         },
-        "required": ["prog_id_or_app_path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "open_folder"
     },
     {
-      "name": "list_all_tags",
-      "description": "List all configured file tags in NanoFile database with item count and color tokens.",
+      "description": "List all existing custom tags across the system along with their usage counts.",
       "inputSchema": {
-        "type": "object",
-        "properties": {}
-      }
+        "properties": {},
+        "type": "object"
+      },
+      "name": "list_all_tags"
     },
     {
-      "name": "delete_tag",
-      "description": "Delete a tag from NanoFile tag library and detach from all items.",
+      "description": "Remove a tag entirely from the tag catalog and unbind it from all associated files/folders.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "tag_name": { "type": "string", "description": "Tag name to delete" }
+          "tag_name": {
+            "description": "The tag name to delete",
+            "type": "string"
+          }
         },
-        "required": ["tag_name"]
-      }
+        "required": [
+          "tag_name"
+        ],
+        "type": "object"
+      },
+      "name": "delete_tag"
     },
     {
-      "name": "rename_tag",
-      "description": "Rename a tag globally across NanoFile database.",
+      "description": "Rename an existing tag across the catalog and update all associated items.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "old_name": { "type": "string", "description": "Current tag name" },
-          "new_name": { "type": "string", "description": "New tag name" }
+          "new_name": {
+            "description": "New tag name",
+            "type": "string"
+          },
+          "old_name": {
+            "description": "Existing tag name",
+            "type": "string"
+          }
         },
-        "required": ["old_name", "new_name"]
-      }
+        "required": [
+          "old_name",
+          "new_name"
+        ],
+        "type": "object"
+      },
+      "name": "rename_tag"
     },
     {
-      "name": "get_item_tags",
-      "description": "Get all tags attached to a specific file or folder.",
+      "description": "Get assigned custom tags for a specific file or folder.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "File or folder absolute path" }
+          "path": {
+            "description": "Absolute path to the item",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "get_item_tags"
     },
     {
-      "name": "set_item_tags",
-      "description": "Assign tags to a file or folder in NanoFile.",
+      "description": "Assign or update custom tags for a file or folder.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "File or folder absolute path" },
-          "tags": { "type": "array", "items": { "type": "string" }, "description": "List of tag names to attach" }
+          "path": {
+            "description": "Absolute path to the item",
+            "type": "string"
+          },
+          "tags": {
+            "description": "List of tags (e.g. ['Work', 'Important'])",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
         },
-        "required": ["path", "tags"]
-      }
+        "required": [
+          "path",
+          "tags"
+        ],
+        "type": "object"
+      },
+      "name": "set_item_tags"
     },
     {
-      "name": "remove_item_tags",
-      "description": "Remove specified tags from a file or folder.",
+      "description": "Remove specific tags or all tags from a file or folder.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "File or folder absolute path" },
-          "tags": { "type": "array", "items": { "type": "string" }, "description": "List of tag names to detach" }
+          "path": {
+            "description": "Absolute path to the item",
+            "type": "string"
+          },
+          "tags": {
+            "description": "Tags to remove. If omitted, removes all tags.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
         },
-        "required": ["path", "tags"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "remove_item_tags"
     },
     {
-      "name": "get_item_metadata",
-      "description": "Read comprehensive metadata. For folders, automatically calculates total recursive size and item count.",
+      "description": "Get file or folder metadata including size, permissions, timestamps, and item/file count for directories.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "File or folder absolute path" }
+          "path": {
+            "description": "Absolute path to the item",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "get_item_metadata"
     },
     {
-      "name": "get_media_metadata",
-      "description": "Extract specialized media metadata (resolution, duration, bitrate, codec).",
+      "description": "Get detailed inspection info for media or documents (extension, lines/chars for text).",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "Media file absolute path" }
+          "path": {
+            "description": "Absolute path to the file",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "get_media_metadata"
     },
     {
-      "name": "search_apps",
-      "description": "Search installed applications registered in Windows Start Menu and Registry.",
+      "description": "Search installed desktop applications by name keyword.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "query": { "type": "string", "description": "Application name query" },
-          "limit": { "type": "integer", "description": "Max results (default: 20)" }
+          "query": {
+            "description": "Application name keyword",
+            "type": "string"
+          }
         },
-        "required": ["query"]
-      }
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "name": "search_apps"
     },
     {
-      "name": "launch_app",
-      "description": "Launch an application by executable path or registered app name.",
+      "description": "Launch an installed application with optional arguments.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "app_path": { "type": "string", "description": "Executable path or registered app command" },
-          "arguments": { "type": "array", "items": { "type": "string" }, "description": "Optional CLI arguments" }
+          "app_path_or_command": {
+            "description": "Executable path or registered command",
+            "type": "string"
+          },
+          "arguments": {
+            "description": "Optional command line arguments",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
         },
-        "required": ["app_path"]
-      }
+        "required": [
+          "app_path_or_command"
+        ],
+        "type": "object"
+      },
+      "name": "launch_app"
     },
     {
-      "name": "uninstall_app",
-      "description": "Trigger Windows uninstallation workflow for an installed application.",
+      "description": "Open the system uninstaller or Settings page for an application.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "app_name_or_uninstall_string": { "type": "string", "description": "App name or registry UninstallString" }
+          "app_name": {
+            "description": "Name of the application to uninstall",
+            "type": "string"
+          }
         },
-        "required": ["app_name_or_uninstall_string"]
-      }
+        "required": [
+          "app_name"
+        ],
+        "type": "object"
+      },
+      "name": "uninstall_app"
     },
     {
-      "name": "get_favorites",
-      "description": "Get all pinned favorite files, folders, and quick-access locations in NanoFile.",
+      "description": "List all bookmarked favorite directories and quick access locations.",
       "inputSchema": {
-        "type": "object",
-        "properties": {}
-      }
+        "properties": {},
+        "type": "object"
+      },
+      "name": "get_favorites"
     },
     {
-      "name": "add_favorite",
-      "description": "Pin a file or folder to NanoFile favorites.",
+      "description": "Add a folder path to favorites/quick access.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "File or folder absolute path" },
-          "title": { "type": "string", "description": "Optional custom display title" }
+          "alias": {
+            "description": "Optional custom display name",
+            "type": "string"
+          },
+          "path": {
+            "description": "Absolute folder path",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "add_favorite"
     },
     {
-      "name": "remove_favorite",
-      "description": "Unpin an item from NanoFile favorites by path.",
+      "description": "Remove a folder path from favorites.",
       "inputSchema": {
-        "type": "object",
         "properties": {
-          "path": { "type": "string", "description": "Path to unpin" }
+          "path": {
+            "description": "Absolute folder path to remove",
+            "type": "string"
+          }
         },
-        "required": ["path"]
-      }
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "remove_favorite"
     }
   ]
 }

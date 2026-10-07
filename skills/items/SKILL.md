@@ -35,7 +35,10 @@ description: Universal item search and lifecycle operations (move, copy, rename,
   "target_path": "C:\\Users\\Username\\Documents\\archived.docx" // move/copy/rename 时需要
 }
 ```
-> **安全防护**：`recycle` 操作会将项目移入 Windows 回收站，绝不物理直删，支持用户后悔还原。
+> **安全策略**：
+> - `recycle` 操作将项目移入 Windows 回收站，绝不物理直删，可随时还原，无需二次确认。
+> - 系统关键目录（如 `C:\Windows`、启动项等）受底层保护，禁止任何修改操作。
+> - 操作涉及需管理员或特殊权限的受保护目录时，遵循与 GUI 相同机制，需获得用户显式二次确认。
 
 ### 3. `batch_operate_items`
 批量移动、复制或删除多个项目。
