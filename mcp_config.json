@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "nanofile": {
+      "command": "nanofile.exe",
+      "args": [
+        "--mcp"
+      ],
+      "env": {
+        "AGENT_PLUGIN": "agy"
+      }
+    }
+  }
+}
