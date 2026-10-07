@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "nanofile-agent-plugin",
+  "version": "1.0.0",
+  "displayName": "NanoFile Agent Plugin",
+  "description": "Native Windows filesystem management, lightning search, tags, and privacy vault plugin for AI agents.",
+  "author": "NanoFile Team",
+  "license": "MIT",
+  "homepage": "https://apps.microsoft.com/detail/9pgwd50gwcjw",
+  "repository": "https://github.com/ixcgh123/NanoFile-Skills",
+  "entrypoint": {
+    "type": "mcp_stdio",
+    "command": "nanofile.exe",
+    "args": ["--mcp"],
+    "schema": "../mcp/schema.json"
+  },
+  "runtimeRequirements": {
+    "os": "windows",
+    "minWindowsVersion": "10.0.19041",
+    "app": "NanoFile Desktop (Microsoft Store)"
+  },
+  "categories": [
+    { "id": "items", "name": "Item Management", "tools": 3, "skill": "../skills/items/SKILL.md" },
+    { "id": "files", "name": "File Operations", "tools": 6, "skill": "../skills/files/SKILL.md" },
+    { "id": "folders", "name": "Folder Operations", "tools": 6, "skill": "../skills/folders/SKILL.md" },
+    { "id": "tags", "name": "Tag Management", "tools": 6, "skill": "../skills/tags/SKILL.md" },
+    { "id": "metadata", "name": "Metadata & Recursive Size", "tools": 2, "skill": "../skills/metadata/SKILL.md" },
+    { "id": "apps", "name": "Application Management", "tools": 3, "skill": "../skills/apps/SKILL.md" },
+    { "id": "favorites", "name": "Favorites & Quick Access", "tools": 3, "skill": "../skills/favorites/SKILL.md" },
+    { "id": "vault", "name": "Privacy Vault", "tools": 3, "skill": "../skills/vault/SKILL.md" }
+  ],
+  "toolCount": 32,
+  "pluginIntegrations": {
+    "cursor": "./cursor/.cursorrules",
+    "dify": "./dify/provider.yaml",
+    "langchain": "./langchain/toolkit.json"
+  }
+}

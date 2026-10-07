@@ -1,0 +1,47 @@
+identity:
+  name: nanofile
+  author: NanoFile Team
+  label:
+    en_US: NanoFile Native Toolset
+    zh_Hans: NanoFile 本地原生工具集
+  description:
+    en_US: High-performance Windows filesystem manager, search, metadata, and vault provider for local agents.
+    zh_Hans: 高性能 Windows 本地文件管理、极速搜索、递归元数据与隐私保险箱 Agent 工具集。
+  icon: icon.svg
+
+protocol: mcp_stdio
+command: nanofile.exe
+args:
+  - "--mcp"
+
+tools:
+  - name: search_items
+    label:
+      en_US: Search Items
+      zh_Hans: 通用项目搜索
+    description: Lightning search across files and directories.
+  - name: read_file_content
+    label:
+      en_US: Read File
+      zh_Hans: 读取文件内容
+    description: Safe UTF-8 file content inspection.
+  - name: write_file_content
+    label:
+      en_US: Write File
+      zh_Hans: 写入文件内容
+    description: Atomic file creation and writing.
+  - name: get_item_metadata
+    label:
+      en_US: Get Metadata
+      zh_Hans: 读取项目元数据
+    description: Read attributes, recursive directory size, and count.
+  - name: list_folder_contents
+    label:
+      en_US: List Folder
+      zh_Hans: 列出目录内容
+    description: List files and subfolders in a target folder.
+  - name: vault_get_status
+    label:
+      en_US: Vault Status
+      zh_Hans: 查询保险箱状态
+    description: Check privacy vault lock state.

@@ -1,11 +1,12 @@
-# ⚡ NanoFile MCP Server & Agent Skills
+# ⚡ NanoFile MCP Server, Agent Skills & Plugins
 
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-blue.svg)](https://modelcontextprotocol.io/)
+[![Agent Plugins](https://img.shields.io/badge/Plugins-Cursor%20%7C%20Dify%20%7C%20LangChain-orange.svg)](plugins/)
 [![Microsoft Store](https://img.shields.io/badge/Microsoft_Store-NanoFile-0078D7.svg?logo=windows)](https://apps.microsoft.com/detail/9pgwd50gwcjw)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows_10%2F11-blue.svg)](https://apps.microsoft.com/detail/9pgwd50gwcjw)
 
-> 🚀 **Official Open Source Repository**: Standard Model Context Protocol (MCP) Server specification & AI Agent Skills for [NanoFile Desktop](https://apps.microsoft.com/detail/9pgwd50gwcjw).
+> 🚀 **Official Open Source Repository**: Standard Model Context Protocol (MCP) Server, Modular Agent Skills & Ecosystem Plugins for [NanoFile Desktop](https://apps.microsoft.com/detail/9pgwd50gwcjw).
 
 [中文说明](#-中文说明) | [English Documentation](#-english-documentation)
 
@@ -13,32 +14,51 @@
 
 ## 🇨🇳 中文说明
 
-本项目是 **NanoFile** 官方开源的 **MCP 服务规范 (Model Context Protocol)** 与 **AI 技能指南 (Agent Skills)**。
+本项目是 **NanoFile** 官方开源的 **三位一体 AI Agent 扩展仓库**：
+1. **MCP 服务协议 (Model Context Protocol)**：面向标准 AI 客户端的机器通讯协议规范；
+2. **AI 技能指南 (Agent Skills)**：面向大模型自然语言决策、高情商执行的操作策略指南；
+3. **Agent 插件生态 (Plugins & Extensions)**：面向各类低代码编排平台、IDE 规则、框架 Toolkit 的开箱即用插件。
 
-通过将 **开放协议** 与 **微软商店官方桌面端** 结合，外部 AI 宿主（如 **Claude Desktop、Cursor、Cline、Windsurf、VS Code**）无需配置复杂运行环境，只需 5 行 JSON 配置即可直接安全调度本地文件管理器能力。
+通过将 **开放协议** 与 **微软商店官方桌面端** 结合，外部 AI 宿主无需配置复杂运行环境，只需 5 行 JSON 配置即可直接安全调度本地文件管理器能力。
 
-### 📁 仓库双重架构 (Dual Architecture)
-
-本仓库兼顾 **MCP 机器接口规范** 与 **AI 提示词技能规范**：
+### 📁 仓库三层架构体系 (Three-Tier Architecture)
 
 ```text
 NanoFile-Skills/
-├── mcp/                      # 🤖 机器与协议层 (MCP Server Protocol)
-│   ├── schema.json           # 官方标准 MCP 工具清单 (包含 32 个工具的输入输出 JSON Schema)
-│   └── config.example.json   # Claude / Cursor / Cline / Windsurf 接入范例
-├── skills/                   # 🧠 智能与认知层 (Agent Skills Instructions)
-│   ├── items/SKILL.md        # 1. 项目读写子技能 (通用搜索、复制、移动、重命名、删除)
-│   ├── files/SKILL.md        # 2. 文件读写子技能 (文件检索、文本读写、打开方式读取与设定)
-│   ├── folders/SKILL.md      # 3. 文件夹读写子技能 (目录检索、层级遍历、新建、打开方式读取与设定)
-│   ├── tags/SKILL.md         # 4. 标签读写子技能 (标签库维护、多标签关联与查询)
-│   ├── metadata/SKILL.md     # 5. 元数据读取子技能 (属性读取、文件夹递归大小与条目数量统计)
-│   ├── apps/SKILL.md         # 6. 应用程序读写子技能 (已安装应用检索、安全带参启动、卸载唤起)
-│   ├── favorites/SKILL.md    # 7. 收藏夹读写子技能 (快速访问书签获取、添加、移除)
-│   └── vault/SKILL.md        # 8. 保险箱管理子技能 (状态查询、密码解锁、内存敏感凭据秒级锁定)
-├── SKILL.md                  # 全局 Master 技能总览 (可直接一键载入 AI 客户端)
+├── plugins/                  # 🧩 1. 插件生态层 (Agent Plugins & Toolkits)
+│   ├── manifest.json         # 统一插件清单定义 (Plugin Manifest)
+│   ├── cursor/.cursorrules   # Cursor / Windsurf / Copilot 专用 Agent 规则插件
+│   ├── dify/provider.yaml    # Dify / Coze / FastGPT 低代码平台自定义工具提供商声明
+│   └── langchain/toolkit.json # LangChain / LlamaIndex / CrewAI 工具包集成声明
+├── mcp/                      # 🤖 2. 机器协议层 (MCP Server Protocol Specification)
+│   ├── schema.json           # 32 个工具的标准 JSON Schema（供各大 MCP Registry / 插件市场自动索引）
+│   └── config.example.json   # Claude Desktop / Cursor / Cline / Windsurf 接入范例
+├── skills/                   # 🧠 3. 智能认知层 (Modular Agent Skills Instructions)
+│   ├── items/SKILL.md        # 1. 项目读写 (通用搜索、复制、移动、重命名、删除)
+│   ├── files/SKILL.md        # 2. 文件读写 (文件专用检索、文本读写、打开方式读取与设定)
+│   ├── folders/SKILL.md      # 3. 文件夹读写 (目录专用检索、遍历、新建、打开方式读取与设定)
+│   ├── tags/SKILL.md         # 4. 标签读写 (标签库维护、多标签读写与关联管理)
+│   ├── metadata/SKILL.md     # 5. 元数据读取 (属性读取、文件夹递归总大小与数量统计)
+│   ├── apps/SKILL.md         # 6. 应用程序读写 (已安装应用检索、安全带参启动、卸载唤起)
+│   ├── favorites/SKILL.md    # 7. 收藏夹读写 (快速访问书签获取、添加、移除)
+│   └── vault/SKILL.md        # 8. 保险箱管理 (状态查询、密码解锁、内存凭据秒级锁定)
+├── SKILL.md                  # 全局 Master 技能总览 (可供外部 AI 宿主一键整体挂载)
 ├── README.md                 # 官方导航与接入说明
 └── LICENSE                   # MIT 开源许可证
 ```
+
+---
+
+### 🧩 插件生态使用指引 (Plugins)
+
+为不同生态的 Agent 提供了开箱即用的支持：
+
+| 平台 / 框架 | 插件形式 | 使用方法 |
+| :--- | :--- | :--- |
+| **Cursor / Windsurf** | [`.cursorrules`](plugins/cursor/.cursorrules) | 直接将文件拷贝到您的项目根目录，Agent 将自动感知并优先调度 NanoFile |
+| **Dify / Coze / FastGPT** | [`provider.yaml`](plugins/dify/provider.yaml) | 在平台后台“自定义工具”中导入该 YAML，即可在工作流节点中使用 NanoFile 工具 |
+| **LangChain / LlamaIndex** | [`toolkit.json`](plugins/langchain/toolkit.json) | 通过标准 Stdio 连接声明在 Python/TS 框架中实例化 `NanoFileToolkit` |
+| **通用 Agent 宿主** | [`manifest.json`](plugins/manifest.json) | 读取插件清单，动态获取支持的 32 个工具与技能元数据 |
 
 ---
 
@@ -89,13 +109,12 @@ NanoFile-Skills/
 
 ## 🌐 English Documentation
 
-**NanoFile MCP & Skills** provides the official open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server declarations and modular agent skills for the [NanoFile Desktop](https://apps.microsoft.com/detail/9pgwd50gwcjw) app.
+**NanoFile MCP & Skills** provides the official open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server declarations, modular agent skills, and ecosystem plugins for the [NanoFile Desktop](https://apps.microsoft.com/detail/9pgwd50gwcjw) app.
 
-### 🌟 Highlights
-- **Zero Runtime Dependencies**: Powered natively by NanoFile Desktop via Windows `AppExecutionAlias` (`nanofile.exe --mcp`).
-- **32 Standard Tools**: Covering filesystem, file/folder IO, default apps, tags, recursive folder size, apps, and privacy vault.
-- **MCP Registry Ready**: Complete standard JSON Schema provided in [`mcp/schema.json`](mcp/schema.json).
-- **Safe & Local-First**: Path validation, protected directory blocklist, and zero external cloud telemetry.
+### 🌟 Three-Tier Architecture
+1. **Plugin Ecosystem (`plugins/`)**: Ready-to-use plugins for Cursor rules, Dify toolsets, and LangChain toolkits.
+2. **Machine Protocol (`mcp/`)**: Full JSON Schema (`schema.json`) for automatic indexing by MCP Registries.
+3. **Cognitive Skills (`skills/`)**: Natural language guidelines to help LLMs select optimal search modes and safe filesystem actions.
 
 ### 📥 1. Installation
 Install NanoFile from the Microsoft Store:
@@ -103,8 +122,6 @@ Install NanoFile from the Microsoft Store:
 - ⚡ **Protocol**: `ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
 
 ### ⚙️ 2. MCP Configuration
-Add to your Claude Desktop / Cursor / Cline config:
-
 ```json
 {
   "mcpServers": {
@@ -120,5 +137,5 @@ Add to your Claude Desktop / Cursor / Cline config:
 
 ## 🛡️ License
 
-- **Repository License**: [MIT License](LICENSE) (Open for all MCP tool definitions and skill prompts).
+- **Repository License**: [MIT License](LICENSE) (Open for all MCP tool definitions, skill prompts, and plugin manifests).
 - **NanoFile Desktop**: Distributed and protected under the Microsoft Store End User License Agreement.
