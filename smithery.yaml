@@ -1,9 +1,15 @@
 startCommand:
-  type: "stdio"
+  type: stdio
   config:
     command: "nanofile.exe"
     args:
       - "--mcp"
-configSchema:
-  type: "object"
-  properties: {}
+  configSchema:
+    type: object
+    properties: {}
+  commandFunction: |-
+    (config) => ({
+      command: "nanofile.exe",
+      args: ["--mcp"]
+    })
+exampleConfig: {}
