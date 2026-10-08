@@ -21,6 +21,23 @@ description: Search installed Windows applications, launch desktop programs with
   "query": "Visual Studio"
 }
 ```
+返回结果包含检索耗时统计（整数显示与自动进位单位，如 `450µs`、`18ms`、`2s`）与命中的应用清单：
+```json
+{
+  "elapsed": "18ms",
+  "elapsed_ms": 18,
+  "total": 1,
+  "apps": [
+    {
+      "name": "Visual Studio Code",
+      "publisher": "Microsoft Corporation",
+      "version": "1.93.0",
+      "install_location": "C:\\Program Files\\Microsoft VS Code"
+    }
+  ]
+}
+```
+
 
 ### 2. `launch_app`
 安全启动已安装的应用程序（支持附加命令行参数）。

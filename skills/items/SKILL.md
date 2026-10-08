@@ -27,6 +27,18 @@ description: Universal item search and lifecycle operations (move, copy, rename,
   "max_results": 50
 }
 ```
+返回结果包含搜索耗时统计（整数显示与自动进位单位，如 `450µs`、`15ms`、`2s`）与命中的条目清单：
+```json
+{
+  "elapsed": "15ms",
+  "elapsed_ms": 15,
+  "total": 2,
+  "items": [
+    { "name": "invoice_2026.pdf", "path": "D:\\Work\\invoice_2026.pdf", "is_dir": false, "size": 1048576 }
+  ]
+}
+```
+
 
 ### 2. `operate_item`
 对单个文件或文件夹执行安全的移动、复制、重命名或移入回收站。
