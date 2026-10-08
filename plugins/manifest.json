@@ -8,6 +8,7 @@
   "license": "MIT",
   "homepage": "https://apps.microsoft.com/detail/9pgwd50gwcjw",
   "repository": "https://github.com/xiaode-ai/nanofile-skills",
+  "icon": "https://raw.githubusercontent.com/xiaode-ai/nanofile-skills/main/assets/logo.png",
   "entrypoint": {
     "type": "mcp_stdio",
     "command": "nanofile.exe",

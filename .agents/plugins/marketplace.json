@@ -1,7 +1,8 @@
 {
   "name": "nanofile-skills",
   "interface": {
-    "displayName": "NanoFile Agent Marketplace"
+    "displayName": "NanoFile Agent Marketplace",
+    "icon": "https://raw.githubusercontent.com/xiaode-ai/nanofile-skills/main/assets/logo.png"
   },
   "plugins": [
     {
