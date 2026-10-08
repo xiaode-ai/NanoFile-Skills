@@ -91,20 +91,27 @@ nanofile-skills/
 
 ---
 
-### ⚙️ 2. AI 客户端配置 (5 行极简配置)
+### ⚙️ 2. MCP 服务配置 (ServerConfig)
 
-在您的 AI 客户端（如 Claude Desktop 的 `claude_desktop_config.json`，或 Cursor 的 `mcpServers` 设置）中加入配置：
+本地 STDIO 类型服务，无需任何公网地址，仅依赖微软商店安装后的全局执行别名 `nanofile.exe`。
+
+**ServerConfig**
 
 ```json
 {
   "mcpServers": {
     "nanofile": {
+      "type": "stdio",
       "command": "nanofile.exe",
       "args": ["--mcp"]
     }
   }
 }
 ```
+
+**环境变量 (Environment Variables)**
+
+无需环境变量，留空即可。
 
 详细的各类客户端模板参见 [`mcp/config.example.json`](mcp/config.example.json)。
 
@@ -162,17 +169,27 @@ Install NanoFile from the Microsoft Store:
 - 🛒 **Web**: [Microsoft Store Web Page](https://apps.microsoft.com/detail/9pgwd50gwcjw)
 - ⚡ **Protocol**: `ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
 
-### ⚙️ 2. MCP Configuration
+### ⚙️ 2. MCP Configuration (ServerConfig)
+
+Local STDIO service. No public endpoint required — it relies only on the global execution alias `nanofile.exe` registered by the Microsoft Store installation.
+
+**ServerConfig**
+
 ```json
 {
   "mcpServers": {
     "nanofile": {
+      "type": "stdio",
       "command": "nanofile.exe",
       "args": ["--mcp"]
     }
   }
 }
 ```
+
+**Environment Variables**
+
+None required. Leave empty.
 
 ---
 

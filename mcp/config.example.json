@@ -3,6 +3,7 @@
   "claude_desktop": {
     "mcpServers": {
       "nanofile": {
+        "type": "stdio",
         "command": "nanofile.exe",
         "args": ["--mcp"]
       }
@@ -11,6 +12,7 @@
   "cursor": {
     "mcpServers": {
       "nanofile": {
+        "type": "stdio",
         "command": "nanofile.exe",
         "args": ["--mcp"]
       }
@@ -19,6 +21,7 @@
   "cline_or_roo_code": {
     "mcpServers": {
       "nanofile": {
+        "type": "stdio",
         "command": "nanofile.exe",
         "args": ["--mcp"]
       }
@@ -27,6 +30,7 @@
   "windsurf": {
     "mcpServers": {
       "nanofile": {
+        "type": "stdio",
         "command": "nanofile.exe",
         "args": ["--mcp"]
       }
