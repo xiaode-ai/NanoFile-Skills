@@ -1,0 +1,30 @@
+{
+  "name": "nanofile",
+  "version": "1.0.7",
+  "description": "High-performance native Windows filesystem management, lightning search, tags, and privacy vault plugin for AI agents.",
+  "author": {
+    "name": "NanoFile Team",
+    "url": "https://apps.microsoft.com/detail/9pgwd50gwcjw"
+  },
+  "homepage": "https://apps.microsoft.com/detail/9pgwd50gwcjw",
+  "repository": "https://github.com/xiaode-ai/nanofile-skills",
+  "license": "MIT",
+  "icon": "https://raw.githubusercontent.com/xiaode-ai/nanofile-skills/main/assets/logo.png",
+  "skills": [
+    "skills/items",
+    "skills/files",
+    "skills/folders",
+    "skills/tags",
+    "skills/metadata",
+    "skills/apps",
+    "skills/favorites"
+  ],
+  "mcpServers": {
+    "nanofile": {
+      "command": "nanofile.exe",
+      "args": [
+        "--mcp"
+      ]
+    }
+  }
+}
