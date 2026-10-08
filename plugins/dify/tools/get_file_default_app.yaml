@@ -1,0 +1,23 @@
+identity:
+  name: get_file_default_app
+  author: NanoFile Team
+  label:
+    en_US: Get File Default App
+    zh_Hans: 获取文件默认打开方式
+description:
+  human:
+    en_US: "Get the default opening application for a file extension or a specific file path."
+    zh_Hans: "查询某个文件扩展名或具体文件的默认打开程序。"
+  llm: "Look up the default opening application registered for a file extension or a full file path."
+parameters:
+  - name: extension_or_path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Extension or Path
+      zh_Hans: 扩展名或路径
+    human_description:
+      en_US: "A file extension such as .pdf, or a full file path."
+      zh_Hans: "文件扩展名（如 .pdf），或完整的文件路径。"
+    llm_description: "A file extension such as .pdf or txt, or a full file path."

@@ -1,0 +1,34 @@
+identity:
+  name: remove_item_tags
+  author: NanoFile Team
+  label:
+    en_US: Remove Item Tags
+    zh_Hans: 移除项目标签
+description:
+  human:
+    en_US: "Remove specific tags, or all tags, from a file or folder."
+    zh_Hans: "移除文件或文件夹上的指定标签，或清空全部标签。"
+  llm: "Remove specific tags from a file or folder. If no tags are given, all tags are removed from the item."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Item Path
+      zh_Hans: 项目路径
+    human_description:
+      en_US: "Absolute path to the file or folder."
+      zh_Hans: "文件或文件夹的绝对路径。"
+    llm_description: "The absolute path to the file or folder."
+  - name: tags
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Tags
+      zh_Hans: 标签列表
+    human_description:
+      en_US: "The tags to remove. Leave empty to remove all tags. 多个值使用换行或英文逗号分隔。"
+      zh_Hans: "要移除的标签，留空则移除全部标签。多个值使用换行或英文逗号分隔。"
+    llm_description: "The tags to remove. Separate multiple values with newlines or English commas. Omit to remove all tags from the item."

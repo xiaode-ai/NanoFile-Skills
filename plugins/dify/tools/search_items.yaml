@@ -6,41 +6,105 @@ identity:
     zh_Hans: 通用项目搜索
 description:
   human:
-    en_US: Lightning search across files and directories in Windows.
-    zh_Hans: 在 Windows 中秒级检索文件与文件夹。
-  llm: Search for files and folders on the Windows filesystem. Supports global, common, and directory scopes.
+    en_US: "Lightning search across files and directories on Windows, supporting common, global, and directory scopes."
+    zh_Hans: "在 Windows 中秒级检索文件与文件夹，支持常用目录、全盘与指定目录范围。"
+  llm: "Search for files and folders on the Windows filesystem. Supports common, global, and directory scopes with turbo, realtime, or auto modes."
 parameters:
   - name: query
     type: string
     required: true
+    form: llm
     label:
       en_US: Query
       zh_Hans: 搜索关键词
     human_description:
-      en_US: Filename, keyword or pattern to search.
-      zh_Hans: 要检索的文件名或关键词。
-    llm_description: The search term or pattern to look for.
+      en_US: "Filename, keyword or pattern to search."
+      zh_Hans: "要检索的文件名或关键词。"
+    llm_description: "The search term or pattern to look for."
+  - name: item_type
+    type: select
+    required: false
+    form: llm
+    default: all
+    label:
+      en_US: Item Type
+      zh_Hans: 项目类型
+    human_description:
+      en_US: "Filter results by item type. Defaults to all."
+      zh_Hans: "按项目类型过滤结果，默认搜索全部。"
+    llm_description: "Filter results by item type: all, file, or folder. Defaults to all."
+    options:
+      - value: all
+        label:
+          en_US: All Items
+          zh_Hans: 全部项目
+      - value: file
+        label:
+          en_US: Files Only
+          zh_Hans: 仅文件
+      - value: folder
+        label:
+          en_US: Folders Only
+          zh_Hans: 仅文件夹
+  - name: extensions
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Extensions
+      zh_Hans: 扩展名过滤
+    human_description:
+      en_US: "Optional file extension filters, for example pdf, docx. Only applied when searching files. 多个值使用换行或英文逗号分隔。"
+      zh_Hans: "可选的文件扩展名过滤，例如 pdf、docx，仅在检索文件时生效。多个值使用换行或英文逗号分隔。"
+    llm_description: "Optional file extension filters such as pdf or docx. Only applied when searching files. Separate multiple values with newlines or English commas."
   - name: scope
     type: select
     required: false
-    default: global
+    form: llm
+    default: common
+    label:
+      en_US: Scope
+      zh_Hans: 检索范围
+    human_description:
+      en_US: "Search scope: common (frequently used folders), global (all drives), or directory (a specific folder). Defaults to common."
+      zh_Hans: "检索范围：常用目录、全盘，或指定目录。默认常用目录。"
+    llm_description: "Search scope: common, global, or directory. Defaults to common."
     options:
-      - value: global
-        label:
-          en_US: Global (All Drives)
-          zh_Hans: 全盘搜索
       - value: common
         label:
           en_US: Common Directories
           zh_Hans: 常用目录
+      - value: global
+        label:
+          en_US: Global (All Drives)
+          zh_Hans: 全盘搜索
       - value: directory
         label:
           en_US: Specific Directory
           zh_Hans: 指定目录
+  - name: directory_path
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Directory Path
+      zh_Hans: 目标目录
+    human_description:
+      en_US: "Target folder path, used when scope is directory."
+      zh_Hans: "目标文件夹路径，scope 为 directory 时使用。"
+    llm_description: "Target folder path. Required when scope is directory."
   - name: mode
     type: select
     required: false
+    form: llm
     default: auto
+    label:
+      en_US: Search Mode
+      zh_Hans: 检索模式
+    human_description:
+      en_US: "Search mode: turbo (fast in-memory index), realtime (live disk scan), or auto. Defaults to auto."
+      zh_Hans: "检索模式：极速内存索引、实时磁盘扫描，或自动选择。默认自动。"
+    llm_description: "Search mode: turbo, realtime, or auto. Defaults to auto."
     options:
       - value: turbo
         label:
@@ -54,3 +118,15 @@ parameters:
         label:
           en_US: Auto
           zh_Hans: 自动选择
+  - name: max_results
+    type: number
+    required: false
+    form: llm
+    default: 50
+    label:
+      en_US: Max Results
+      zh_Hans: 最大结果数
+    human_description:
+      en_US: "Maximum number of items to return. Defaults to 50."
+      zh_Hans: "返回的最大条目数，默认 50。"
+    llm_description: "Maximum number of items to return. Defaults to 50."

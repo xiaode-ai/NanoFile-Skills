@@ -1,0 +1,34 @@
+identity:
+  name: write_file_content
+  author: NanoFile Team
+  label:
+    en_US: Write File Content
+    zh_Hans: 写入文件内容
+description:
+  human:
+    en_US: "Create or overwrite a file with UTF-8 text content."
+    zh_Hans: "以 UTF-8 文本内容创建或覆盖文件。"
+  llm: "Create or overwrite a local file with the given UTF-8 text content. Existing content is replaced."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+    human_description:
+      en_US: "Absolute path to the file."
+      zh_Hans: "文件的绝对路径。"
+    llm_description: "The absolute file path to write to."
+  - name: content
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Content
+      zh_Hans: 文本内容
+    human_description:
+      en_US: "Text content to write into the file."
+      zh_Hans: "要写入文件的文本内容。"
+    llm_description: "The full UTF-8 text content to write."

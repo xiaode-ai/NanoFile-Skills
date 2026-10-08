@@ -1,6 +1,6 @@
 ---
 name: nanofile-skills
-description: Connect your AI assistant to NanoFile for high-performance local file search, file/folder operations, default app management, tag catalog, installed app management, and secure Privacy Vault operations.
+description: Connect your AI assistant to NanoFile for high-performance local file search, file/folder operations, default app management, tag catalog, and installed app management.
 ---
 
 # NanoFile Agent Skills (7 大核心能力全集)

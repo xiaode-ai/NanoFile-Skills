@@ -3,7 +3,7 @@
   "name": "nanofile-agent-plugin",
   "version": "1.0.7",
   "displayName": "NanoFile Agent Plugin",
-  "description": "Native Windows filesystem management, lightning search, tags, and privacy vault plugin for AI agents.",
+  "description": "Native Windows filesystem management, lightning search, and tags plugin for AI agents.",
   "author": "NanoFile Team",
   "license": "MIT",
   "homepage": "https://apps.microsoft.com/detail/9pgwd50gwcjw",
@@ -32,13 +32,13 @@
     {
       "id": "files",
       "name": "File Operations",
-      "tools": 6,
+      "tools": 5,
       "skill": "../skills/files/SKILL.md"
     },
     {
       "id": "folders",
       "name": "Folder Operations",
-      "tools": 6,
+      "tools": 5,
       "skill": "../skills/folders/SKILL.md"
     },
     {
@@ -66,7 +66,7 @@
       "skill": "../skills/favorites/SKILL.md"
     }
   ],
-  "toolCount": 29,
+  "toolCount": 27,
   "pluginIntegrations": {
     "smithery_mcp": "../smithery.yaml",
     "antigravity_claude": "../plugin.json",

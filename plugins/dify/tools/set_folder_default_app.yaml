@@ -1,0 +1,23 @@
+identity:
+  name: set_folder_default_app
+  author: NanoFile Team
+  label:
+    en_US: Set Folder Default App
+    zh_Hans: 设置目录默认打开方式
+description:
+  human:
+    en_US: "Set the default opening application or tool used for directories."
+    zh_Hans: "设置打开目录时使用的默认应用程序或工具。"
+  llm: "Set the default application or tool used when opening directories."
+parameters:
+  - name: app
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Application
+      zh_Hans: 应用程序
+    human_description:
+      en_US: "One of nanofile, explorer, terminal, or a custom executable path."
+      zh_Hans: "可选值：nanofile、explorer、terminal，或自定义可执行文件路径。"
+    llm_description: "Application identifier: nanofile, explorer, terminal, or an executable path."

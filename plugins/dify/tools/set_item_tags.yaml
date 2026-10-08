@@ -1,0 +1,34 @@
+identity:
+  name: set_item_tags
+  author: NanoFile Team
+  label:
+    en_US: Set Item Tags
+    zh_Hans: 设置项目标签
+description:
+  human:
+    en_US: "Assign or update the custom tags of a file or folder."
+    zh_Hans: "为文件或文件夹设置或更新自定义标签。"
+  llm: "Assign or update the custom tags attached to a file or folder."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Item Path
+      zh_Hans: 项目路径
+    human_description:
+      en_US: "Absolute path to the file or folder."
+      zh_Hans: "文件或文件夹的绝对路径。"
+    llm_description: "The absolute path to the file or folder."
+  - name: tags
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Tags
+      zh_Hans: 标签列表
+    human_description:
+      en_US: "The tags to assign. 多个值使用换行或英文逗号分隔。"
+      zh_Hans: "要设置的标签。多个值使用换行或英文逗号分隔。"
+    llm_description: "The tags to assign, for example Work, Important. Separate multiple values with newlines or English commas."

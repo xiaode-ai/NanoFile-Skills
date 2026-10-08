@@ -1,0 +1,62 @@
+identity:
+  name: operate_item
+  author: NanoFile Team
+  label:
+    en_US: Operate Item
+    zh_Hans: 项目操作
+description:
+  human:
+    en_US: "Perform a safe lifecycle operation on a file or folder: move, copy, rename, or recycle to the Windows Recycle Bin."
+    zh_Hans: "对文件或文件夹执行安全操作：移动、复制、重命名，或移入 Windows 回收站。"
+  llm: "Perform a safe lifecycle operation on a single file or folder. Use recycle to move the item to the Windows Recycle Bin, where it stays restorable."
+parameters:
+  - name: operation
+    type: select
+    required: true
+    form: llm
+    label:
+      en_US: Operation
+      zh_Hans: 操作类型
+    human_description:
+      en_US: "The lifecycle action to perform."
+      zh_Hans: "要执行的生命周期操作。"
+    llm_description: "The operation to perform: move, copy, rename, or recycle."
+    options:
+      - value: move
+        label:
+          en_US: Move
+          zh_Hans: 移动
+      - value: copy
+        label:
+          en_US: Copy
+          zh_Hans: 复制
+      - value: rename
+        label:
+          en_US: Rename
+          zh_Hans: 重命名
+      - value: recycle
+        label:
+          en_US: Recycle (Trash)
+          zh_Hans: 移入回收站
+  - name: source_path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Source Path
+      zh_Hans: 源路径
+    human_description:
+      en_US: "Absolute path to the source file or folder."
+      zh_Hans: "源文件或文件夹的绝对路径。"
+    llm_description: "Absolute path to the source file or folder."
+  - name: target_path
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Target Path
+      zh_Hans: 目标路径
+    human_description:
+      en_US: "Destination path or new name. Required for move, copy, and rename."
+      zh_Hans: "目标路径或新名称，move、copy、rename 时必填。"
+    llm_description: "Destination path or the new name. Required when operation is move, copy, or rename."

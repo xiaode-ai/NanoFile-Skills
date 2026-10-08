@@ -1,0 +1,23 @@
+identity:
+  name: uninstall_app
+  author: NanoFile Team
+  label:
+    en_US: Uninstall App
+    zh_Hans: 卸载应用
+description:
+  human:
+    en_US: "Open the system uninstaller or Settings page for an application so the user can complete the uninstall."
+    zh_Hans: "唤起系统卸载程序或设置页面，由用户完成应用卸载。"
+  llm: "Open the system uninstaller or Settings page for the given application. It never uninstalls silently; the user confirms inside the system UI."
+parameters:
+  - name: app_name
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Application Name
+      zh_Hans: 应用名称
+    human_description:
+      en_US: "Name of the application to uninstall."
+      zh_Hans: "要卸载的应用程序名称。"
+    llm_description: "The name of the application to uninstall."

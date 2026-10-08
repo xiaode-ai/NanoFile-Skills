@@ -1,0 +1,23 @@
+identity:
+  name: search_apps
+  author: NanoFile Team
+  label:
+    en_US: Search Apps
+    zh_Hans: 检索已安装应用
+description:
+  human:
+    en_US: "Search installed desktop applications by name keyword."
+    zh_Hans: "按名称关键词检索系统已安装的桌面应用程序。"
+  llm: "Search the list of installed desktop applications by name keyword."
+parameters:
+  - name: query
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Query
+      zh_Hans: 关键词
+    human_description:
+      en_US: "Application name keyword to search for."
+      zh_Hans: "用于检索的应用程序名称关键词。"
+    llm_description: "The application name keyword to search for."

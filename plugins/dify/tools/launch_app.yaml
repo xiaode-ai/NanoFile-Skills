@@ -1,0 +1,34 @@
+identity:
+  name: launch_app
+  author: NanoFile Team
+  label:
+    en_US: Launch App
+    zh_Hans: 启动应用
+description:
+  human:
+    en_US: "Launch an installed application, optionally with command line arguments."
+    zh_Hans: "启动已安装的应用程序，可选附带命令行参数。"
+  llm: "Launch an installed application, optionally passing command line arguments."
+parameters:
+  - name: app_path_or_command
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Application
+      zh_Hans: 应用程序
+    human_description:
+      en_US: "Executable path or registered command of the app."
+      zh_Hans: "应用程序的可执行文件路径或已注册命令。"
+    llm_description: "Executable path or registered command of the application to launch."
+  - name: arguments
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Arguments
+      zh_Hans: 启动参数
+    human_description:
+      en_US: "Optional command line arguments. 多个值使用换行或英文逗号分隔。"
+      zh_Hans: "可选的命令行参数。多个值使用换行或英文逗号分隔。"
+    llm_description: "Optional command line arguments. Separate multiple values with newlines or English commas. Leave empty to launch without arguments."

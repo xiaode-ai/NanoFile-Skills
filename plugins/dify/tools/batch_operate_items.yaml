@@ -1,0 +1,58 @@
+identity:
+  name: batch_operate_items
+  author: NanoFile Team
+  label:
+    en_US: Batch Operate Items
+    zh_Hans: 批量操作项目
+description:
+  human:
+    en_US: "Perform batch lifecycle operations on multiple files or folders at once: move, copy, or recycle."
+    zh_Hans: "一次性对多个文件或文件夹执行批量移动、复制或移入回收站操作。"
+  llm: "Perform a batch lifecycle operation on multiple files or folders. Use recycle to send all items to the Windows Recycle Bin."
+parameters:
+  - name: operation
+    type: select
+    required: true
+    form: llm
+    label:
+      en_US: Batch Operation
+      zh_Hans: 批量操作类型
+    human_description:
+      en_US: "The batch action to perform."
+      zh_Hans: "要执行的批量操作。"
+    llm_description: "The batch operation to perform: move, copy, or recycle."
+    options:
+      - value: move
+        label:
+          en_US: Move
+          zh_Hans: 移动
+      - value: copy
+        label:
+          en_US: Copy
+          zh_Hans: 复制
+      - value: recycle
+        label:
+          en_US: Recycle (Trash)
+          zh_Hans: 移入回收站
+  - name: source_paths
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Source Paths
+      zh_Hans: 源路径列表
+    human_description:
+      en_US: "Absolute paths of the items to operate on. 多个值使用换行或英文逗号分隔。"
+      zh_Hans: "要操作的项目的绝对路径。多个值使用换行或英文逗号分隔。"
+    llm_description: "Absolute paths of the items to operate on. Separate multiple values with newlines or English commas."
+  - name: destination_directory
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Destination Directory
+      zh_Hans: 目标目录
+    human_description:
+      en_US: "Target folder for move or copy. Not used when recycling."
+      zh_Hans: "move 或 copy 操作的目标文件夹，recycle 时无需填写。"
+    llm_description: "Target folder for move or copy operations. Not used when operation is recycle."

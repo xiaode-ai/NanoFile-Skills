@@ -1,0 +1,12 @@
+identity:
+  name: list_all_tags
+  author: NanoFile Team
+  label:
+    en_US: List All Tags
+    zh_Hans: 列出全部标签
+description:
+  human:
+    en_US: "List all custom tags in the system together with their usage counts."
+    zh_Hans: "列出系统中全部自定义标签及其关联项目数量。"
+  llm: "List every custom tag defined in the system, along with how many items each tag is attached to. Takes no parameters."
+parameters: []

@@ -1,0 +1,34 @@
+identity:
+  name: rename_tag
+  author: NanoFile Team
+  label:
+    en_US: Rename Tag
+    zh_Hans: 重命名标签
+description:
+  human:
+    en_US: "Rename a tag across the catalog and synchronize every associated item."
+    zh_Hans: "重命名标签，并同步更新所有关联项目。"
+  llm: "Rename an existing tag across the catalog and automatically update every associated file and folder."
+parameters:
+  - name: old_name
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Old Name
+      zh_Hans: 当前名称
+    human_description:
+      en_US: "The existing tag name."
+      zh_Hans: "现有的标签名称。"
+    llm_description: "The existing tag name to rename."
+  - name: new_name
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: New Name
+      zh_Hans: 新名称
+    human_description:
+      en_US: "The new tag name to assign."
+      zh_Hans: "要设置的新标签名称。"
+    llm_description: "The new name to assign to the tag."

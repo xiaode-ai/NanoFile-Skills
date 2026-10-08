@@ -1,0 +1,23 @@
+identity:
+  name: remove_favorite
+  author: NanoFile Team
+  label:
+    en_US: Remove Favorite
+    zh_Hans: 移除收藏
+description:
+  human:
+    en_US: "Remove a folder path from favorites and quick access."
+    zh_Hans: "从收藏夹与快速访问中移除目录路径。"
+  llm: "Remove a folder path from favorites and quick access."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Folder Path
+      zh_Hans: 目录路径
+    human_description:
+      en_US: "Absolute path of the folder to remove."
+      zh_Hans: "要移除的目录绝对路径。"
+    llm_description: "The absolute folder path to remove from favorites."

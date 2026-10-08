@@ -1,0 +1,34 @@
+identity:
+  name: open_folder
+  author: NanoFile Team
+  label:
+    en_US: Open Folder
+    zh_Hans: 打开目录
+description:
+  human:
+    en_US: "Open or reveal a folder using the default handler or an explicitly specified tool."
+    zh_Hans: "使用默认处理方式或显式指定的工具打开目录。"
+  llm: "Open or reveal a directory using the configured default target, or an explicitly specified one."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Directory Path
+      zh_Hans: 目录路径
+    human_description:
+      en_US: "Absolute path to the directory."
+      zh_Hans: "目录的绝对路径。"
+    llm_description: "The absolute directory path to open."
+  - name: target
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Open Target
+      zh_Hans: 打开方式
+    human_description:
+      en_US: "Optional target: default, nanofile, explorer, terminal, or an executable path."
+      zh_Hans: "可选目标：default、nanofile、explorer、terminal，或可执行文件路径。"
+    llm_description: "Optional open target: default, nanofile, explorer, terminal, or an executable path. Omit to use the configured default."

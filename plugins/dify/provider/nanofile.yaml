@@ -5,11 +5,35 @@ identity:
     en_US: NanoFile Native Toolset
     zh_Hans: NanoFile 本地工具集
   description:
-    en_US: High-performance Windows filesystem manager, search, metadata, and vault provider.
-    zh_Hans: 高性能 Windows 本地文件管理、极速搜索、递归元数据与隐私保险箱提供商。
+    en_US: High-performance Windows filesystem manager, search, and metadata provider.
+    zh_Hans: 高性能 Windows 本地文件管理、极速搜索与递归元数据提供商。
   icon: icon.svg
 credentials_schema: []
 tools:
   - tools/search_items.yaml
+  - tools/operate_item.yaml
+  - tools/batch_operate_items.yaml
   - tools/read_file_content.yaml
+  - tools/write_file_content.yaml
+  - tools/open_file.yaml
+  - tools/get_file_default_app.yaml
+  - tools/set_file_default_app.yaml
+  - tools/list_folder_contents.yaml
+  - tools/create_folder.yaml
+  - tools/get_folder_default_app.yaml
+  - tools/set_folder_default_app.yaml
+  - tools/open_folder.yaml
+  - tools/list_all_tags.yaml
+  - tools/delete_tag.yaml
+  - tools/rename_tag.yaml
+  - tools/get_item_tags.yaml
+  - tools/set_item_tags.yaml
+  - tools/remove_item_tags.yaml
   - tools/get_item_metadata.yaml
+  - tools/get_media_metadata.yaml
+  - tools/search_apps.yaml
+  - tools/launch_app.yaml
+  - tools/uninstall_app.yaml
+  - tools/get_favorites.yaml
+  - tools/add_favorite.yaml
+  - tools/remove_favorite.yaml

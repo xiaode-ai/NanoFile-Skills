@@ -1,0 +1,23 @@
+identity:
+  name: get_media_metadata
+  author: NanoFile Team
+  label:
+    en_US: Get Media Metadata
+    zh_Hans: 获取媒体/文档元数据
+description:
+  human:
+    en_US: "Get detailed inspection info for a media or document file, such as line and character counts for text files."
+    zh_Hans: "获取媒体或文档文件的详细信息，例如文本文件的行数与字符数。"
+  llm: "Inspect a media or document file in detail. For text files it returns line and character counts."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+    human_description:
+      en_US: "Absolute path to the file."
+      zh_Hans: "文件的绝对路径。"
+    llm_description: "The absolute file path to inspect."

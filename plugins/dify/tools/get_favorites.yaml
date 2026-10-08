@@ -1,0 +1,12 @@
+identity:
+  name: get_favorites
+  author: NanoFile Team
+  label:
+    en_US: Get Favorites
+    zh_Hans: 获取收藏夹
+description:
+  human:
+    en_US: "List all bookmarked favorite directories and quick access locations."
+    zh_Hans: "列出全部已收藏的目录与快速访问位置。"
+  llm: "List all bookmarked favorite directories and quick access locations. Takes no parameters."
+parameters: []

@@ -1,0 +1,23 @@
+identity:
+  name: get_item_tags
+  author: NanoFile Team
+  label:
+    en_US: Get Item Tags
+    zh_Hans: 获取项目标签
+description:
+  human:
+    en_US: "Get the custom tags assigned to a specific file or folder."
+    zh_Hans: "获取指定文件或文件夹已绑定的自定义标签。"
+  llm: "Retrieve the custom tags currently assigned to a file or folder."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Item Path
+      zh_Hans: 项目路径
+    human_description:
+      en_US: "Absolute path to the file or folder."
+      zh_Hans: "文件或文件夹的绝对路径。"
+    llm_description: "The absolute path to the file or folder."

@@ -6,8 +6,8 @@ label:
   en_US: NanoFile Plugin
   zh_Hans: NanoFile 原生插件
 description:
-  en_US: High-performance Windows filesystem manager, search, metadata, and vault tool provider.
-  zh_Hans: 高性能 Windows 本地文件管理、极速搜索、递归元数据与隐私保险箱工具插件。
+  en_US: High-performance Windows filesystem manager, search, and metadata tool provider.
+  zh_Hans: 高性能 Windows 本地文件管理、极速搜索与递归元数据工具插件。
 icon: icon.svg
 plugins:
   tools:

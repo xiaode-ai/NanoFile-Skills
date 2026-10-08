@@ -1,0 +1,34 @@
+identity:
+  name: open_file
+  author: NanoFile Team
+  label:
+    en_US: Open File
+    zh_Hans: 打开文件
+description:
+  human:
+    en_US: "Open a file with the system default program, or with a specified application."
+    zh_Hans: "使用系统默认程序或指定应用程序打开文件。"
+  llm: "Open a file using the system default program, or explicitly with a given application."
+parameters:
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+    human_description:
+      en_US: "Absolute path to the file."
+      zh_Hans: "文件的绝对路径。"
+    llm_description: "The absolute file path to open."
+  - name: with_app
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Open With
+      zh_Hans: 使用应用打开
+    human_description:
+      en_US: "Optional executable name or path to open the file with."
+      zh_Hans: "可选，用于打开该文件的程序名或路径。"
+    llm_description: "Optional path or executable name of the application to open the file with. Omit to use the system default."

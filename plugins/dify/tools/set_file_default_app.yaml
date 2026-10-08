@@ -1,0 +1,34 @@
+identity:
+  name: set_file_default_app
+  author: NanoFile Team
+  label:
+    en_US: Set File Default App
+    zh_Hans: 设置文件默认打开方式
+description:
+  human:
+    en_US: "Set the default opening application for a file extension."
+    zh_Hans: "为指定文件扩展名设置默认打开程序。"
+  llm: "Set the default opening application for a given file extension."
+parameters:
+  - name: extension
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Extension
+      zh_Hans: 扩展名
+    human_description:
+      en_US: "File extension, with or without a leading dot."
+      zh_Hans: "文件扩展名，可带或不带前导点。"
+    llm_description: "File extension such as .pdf or pdf."
+  - name: app_path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Application
+      zh_Hans: 应用程序
+    human_description:
+      en_US: "Executable path or registered application name."
+      zh_Hans: "可执行文件路径或已注册的应用名称。"
+    llm_description: "Executable path or registered application name to set as the handler."

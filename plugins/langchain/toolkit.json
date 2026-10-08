@@ -10,7 +10,7 @@
   "sub_toolkits": [
     {
       "name": "FileSystemToolkit",
-      "tools": ["search_items", "operate_item", "batch_operate_items", "search_files", "read_file_content", "write_file_content", "search_folders", "list_folder_contents", "create_folder"]
+      "tools": ["search_items", "operate_item", "batch_operate_items", "read_file_content", "write_file_content", "list_folder_contents", "create_folder"]
     },
     {
       "name": "MetadataToolkit",

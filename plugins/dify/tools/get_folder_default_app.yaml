@@ -1,0 +1,12 @@
+identity:
+  name: get_folder_default_app
+  author: NanoFile Team
+  label:
+    en_US: Get Folder Default App
+    zh_Hans: 获取目录默认打开方式
+description:
+  human:
+    en_US: "Get the default opening application configured for directories."
+    zh_Hans: "查询当前为目录配置的默认打开方式。"
+  llm: "Get the default opening application or handler currently configured for directories. Takes no parameters."
+parameters: []

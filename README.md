@@ -28,10 +28,10 @@ nanofile-skills/
 ├── plugins/                  # 🧩 1. 插件生态层 (Agent Plugins & Toolkits)
 │   ├── manifest.json         # 统一插件清单定义 (Plugin Manifest)
 │   ├── cursor/.cursorrules   # Cursor / Windsurf / Copilot 专用 Agent 规则插件
-│   ├── dify/provider.yaml    # Dify / Coze / FastGPT 低代码平台自定义工具提供商声明
+│   ├── dify/provider/nanofile.yaml # Dify / Coze / FastGPT 低代码平台自定义工具提供商声明
 │   └── langchain/toolkit.json # LangChain / LlamaIndex / CrewAI 工具包集成声明
 ├── mcp/                      # 🤖 2. 机器协议层 (MCP Server Protocol Specification)
-│   ├── schema.json           # 29 个工具的标准 JSON Schema（供各大 MCP Registry / 插件市场自动索引）
+│   ├── schema.json           # 27 个工具的标准 JSON Schema（供各大 MCP Registry / 插件市场自动索引）
 │   └── config.example.json   # Claude Desktop / Cursor / Cline / Windsurf 接入范例
 ├── skills/                   # 🧠 3. 智能认知层 (Modular Agent Skills Instructions)
 │   ├── items/SKILL.md        # 1. 项目读写 (通用搜索、复制、移动、重命名、删除)
@@ -60,19 +60,19 @@ nanofile-skills/
 | **Cursor / Windsurf / Copilot** | IDE 提示词规则与 Agent 上下文规约 | [`plugins/cursor/.cursorrules`](plugins/cursor/.cursorrules) | 直接将 `.cursorrules` 复制到项目根目录下，代码 Agent 即刻具备调用 NanoFile 的感知 |
 | **Claude / Antigravity Plugins** | 官方 Agent Plugin 标准清单 | [`plugin.json`](plugin.json) | 声明工具列表、技能路径与 MCP 服务关联，宿主自动装载 |
 | **LangChain / LlamaIndex / CrewAI** | Agent Toolkit 架构清单 | [`plugins/langchain/toolkit.json`](plugins/langchain/toolkit.json) | Python/TS 开发者依据参数快速实例化 `NanoFileToolkit` |
-| **通用 MCP 客户端 / Registry** | 官方 JSON Schema 协议定义 | [`mcp/schema.json`](mcp/schema.json) | 各大 AI 框架与客户端一键导入 29 个标准工具参数定义与校验规则 |
+| **通用 MCP 客户端 / Registry** | 官方 JSON Schema 协议定义 | [`mcp/schema.json`](mcp/schema.json) | 各大 AI 框架与客户端一键导入 27 个标准工具参数定义与校验规则 |
 
 
 
 ---
 
-### 🛠️ 7 大核心能力速查 (29 个标准 MCP Tools)
+### 🛠️ 7 大核心能力速查 (27 个标准 MCP Tools)
 
 | # | 能力分类 | 专项子技能 | 核心职能与代表工具 | 工具数 |
 | :-: | :--- | :--- | :--- | :-: |
 | **1** | **项目读写** | [`skills/items`](skills/items/SKILL.md) | `search_items` (常用/全局/目录范围，极速/实时模式); `operate_item`; `batch_operate_items` | 3 |
-| **2** | **文件读写** | [`skills/files`](skills/files/SKILL.md) | `search_files`; `read_file_content`; `write_file_content`; `open_file`; `get_file_default_app`; `set_file_default_app` | 6 |
-| **3** | **文件夹读写** | [`skills/folders`](skills/folders/SKILL.md) | `search_folders`; `list_folder_contents`; `create_folder`; `open_folder`; `get_folder_default_app`; `set_folder_default_app` | 6 |
+| **2** | **文件读写** | [`skills/files`](skills/files/SKILL.md) | `read_file_content`; `write_file_content`; `open_file`; `get_file_default_app`; `set_file_default_app` | 5 |
+| **3** | **文件夹读写** | [`skills/folders`](skills/folders/SKILL.md) | `list_folder_contents`; `create_folder`; `open_folder`; `get_folder_default_app`; `set_folder_default_app` | 5 |
 | **4** | **标签读写** | [`skills/tags`](skills/tags/SKILL.md) | `list_all_tags`; `delete_tag`; `rename_tag`; `get_item_tags`; `set_item_tags`; `remove_item_tags` | 6 |
 | **5** | **元数据读取** | [`skills/metadata`](skills/metadata/SKILL.md) | `get_item_metadata` (含文件夹递归总大小与条目数量统计); `get_media_metadata` | 2 |
 | **6** | **应用程序读写** | [`skills/apps`](skills/apps/SKILL.md) | `search_apps`; `launch_app`; `uninstall_app` | 3 |

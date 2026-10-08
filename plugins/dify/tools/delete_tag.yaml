@@ -1,0 +1,23 @@
+identity:
+  name: delete_tag
+  author: NanoFile Team
+  label:
+    en_US: Delete Tag
+    zh_Hans: 删除标签
+description:
+  human:
+    en_US: "Delete a tag entirely from the catalog and unbind it from all associated items."
+    zh_Hans: "从标签库中彻底删除标签，并自动解除与所有关联项目的绑定。"
+  llm: "Remove a tag from the catalog entirely. It is automatically unbound from every associated file and folder."
+parameters:
+  - name: tag_name
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Tag Name
+      zh_Hans: 标签名称
+    human_description:
+      en_US: "The name of the tag to delete."
+      zh_Hans: "要删除的标签名称。"
+    llm_description: "The tag name to delete from the catalog."
