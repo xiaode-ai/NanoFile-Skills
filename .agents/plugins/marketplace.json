@@ -1,0 +1,19 @@
+{
+  "name": "nanofile-skills",
+  "interface": {
+    "displayName": "NanoFile Agent Marketplace"
+  },
+  "plugins": [
+    {
+      "name": "nanofile",
+      "description": "High-performance native filesystem, lightning search, tags, and privacy vault plugin for AI agents.",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      }
+    }
+  ]
+}
