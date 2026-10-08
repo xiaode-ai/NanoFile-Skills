@@ -84,7 +84,7 @@ nanofile-skills/
 
 所有 MCP 工具调用均由底层的 NanoFile 原生引擎驱动，零环境依赖：
 
-- 🛒 **微软应用商店直达 Web 链接**：[https://apps.microsoft.com/detail/9pgwd50gwcjw](https://apps.microsoft.com/detail/9pgwd50gwcjw)
+- 🛒 **微软应用商店直达 Web 链接**：[Microsoft Store 商店详情页](https://apps.microsoft.com/detail/9pgwd50gwcjw)
 - ⚡ **Windows 一键唤起安装协议**：`ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
 
 > **免配环境说明**：无需安装 Node.js、Python 或任何命令行工具。安装商店应用后，Windows 会自动注册全局执行别名 `nanofile.exe`。
@@ -159,7 +159,7 @@ nanofile-skills/
 
 ### 📥 1. Installation
 Install NanoFile from the Microsoft Store:
-- 🛒 **Web**: [https://apps.microsoft.com/detail/9pgwd50gwcjw](https://apps.microsoft.com/detail/9pgwd50gwcjw)
+- 🛒 **Web**: [Microsoft Store Web Page](https://apps.microsoft.com/detail/9pgwd50gwcjw)
 - ⚡ **Protocol**: `ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
 
 ### ⚙️ 2. MCP Configuration
