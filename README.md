@@ -24,7 +24,7 @@
 ### 📁 仓库三层架构体系 (Three-Tier Architecture)
 
 ```text
-NanoFile-Skills/
+nanofile-skills/
 ├── plugins/                  # 🧩 1. 插件生态层 (Agent Plugins & Toolkits)
 │   ├── manifest.json         # 统一插件清单定义 (Plugin Manifest)
 │   ├── cursor/.cursorrules   # Cursor / Windsurf / Copilot 专用 Agent 规则插件

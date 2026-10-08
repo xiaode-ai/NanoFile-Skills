@@ -54,7 +54,7 @@ export function autoBumpAndRelease(commitMessage = 'chore: auto release update')
       writeFileSync(manifestJsonPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
     } catch (_) {}
 
-    console.log(`🚀 [NanoFile-Skills] 版本号自增: ${oldVersion} -> ${newVersion} (0-999 进位制)`);
+    console.log(`🚀 [nanofile-skills] 版本号自增: ${oldVersion} -> ${newVersion} (0-999 进位制)`);
 
     // 4. Git 自动提交版本文件
     execSync('git add plugin.json plugins/manifest.json', { cwd: rootDir, stdio: 'inherit' });
@@ -62,12 +62,12 @@ export function autoBumpAndRelease(commitMessage = 'chore: auto release update')
 
     // 5. 创建本地 Git Tag
     execSync(`git tag -a ${tagName} -m "Release ${tagName}"`, { cwd: rootDir, stdio: 'inherit' });
-    console.log(`🏷️ [NanoFile-Skills] 本地 Git 标签已创建: ${tagName}`);
+    console.log(`🏷️ [nanofile-skills] 本地 Git 标签已创建: ${tagName}`);
 
     // 6. 推送到 GitHub 远程（分支 + 标签）
     execSync('git push origin main', { cwd: rootDir, stdio: 'inherit' });
     execSync(`git push origin ${tagName}`, { cwd: rootDir, stdio: 'inherit' });
-    console.log(`☁️ [NanoFile-Skills] 云端 Git 标签已推送: ${tagName}`);
+    console.log(`☁️ [nanofile-skills] 云端 Git 标签已推送: ${tagName}`);
 
     // 7. 使用 gh cli 自动创建 GitHub Release
     try {
@@ -75,7 +75,7 @@ export function autoBumpAndRelease(commitMessage = 'chore: auto release update')
         cwd: rootDir,
         stdio: 'inherit',
       });
-      console.log(`🎉 [NanoFile-Skills] GitHub Release 自动发布成功: ${tagName}`);
+      console.log(`🎉 [nanofile-skills] GitHub Release 自动发布成功: ${tagName}`);
     } catch (ghErr) {
       console.warn(`⚠️ GitHub Release 创建跳过或需确认权限:`, ghErr.message);
     }
