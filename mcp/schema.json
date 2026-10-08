@@ -4,11 +4,27 @@
   "title": "NanoFile MCP Tools Specification",
   "tools": [
     {
-      "description": "Unified high-performance item search across files and directories. Supports item_type (all, file, folder) and extensions filter.",
+      "description": "Unified high-performance item search across files and directories. Supports item_type ('all', 'file', 'folder'), extension filters, scopes, and modes.",
       "inputSchema": {
         "properties": {
           "directory_path": {
             "description": "Target folder path if scope is 'directory'.",
+            "type": "string"
+          },
+          "extensions": {
+            "description": "Optional file extension filters (e.g. ['pdf', 'docx']). Only applied when searching files.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "item_type": {
+            "description": "Item type filter: 'all' (files and folders, default), 'file' (only files), or 'folder' (only folders).",
+            "enum": [
+              "all",
+              "file",
+              "folder"
+            ],
             "type": "string"
           },
           "max_results": {
@@ -36,22 +52,6 @@
               "directory"
             ],
             "type": "string"
-          },
-          "item_type": {
-            "type": "string",
-            "enum": [
-              "all",
-              "file",
-              "folder"
-            ],
-            "description": "Item type filter: all, file, or folder."
-          },
-          "extensions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Optional file extension filters."
           }
         },
         "required": [
