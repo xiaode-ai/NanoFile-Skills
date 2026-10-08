@@ -5,21 +5,11 @@ description: Connect your AI assistant to NanoFile for high-performance local fi
 
 # NanoFile Agent Skills (7 大核心能力全集)
 
-> ⚠️ **【Agent 极速直通执行守则（最高执行优先级）】**：
-> 1. **一步直出，严禁连环试探 (Single-Step Execution)**：
->    - 无论是搜索还是读取，**只需调用 1 次工具**！
->    - **严禁**：在一次用户指令中连续尝试 `search_files`、`search_items`、又跑去遍历个人目录、又去搜某个特定文件夹！
-> 2. **零结果即事实，严禁疑病式排查 (Ground Truth / Zero-Fallback)**：
->    - NanoFile 采用底层的 NTFS 极速索引，**返回结果即最终权威事实**。
->    - 若返回结果为 `[]`（空数组），说明电脑中**确实不存在该文件**！**必须立即停止**，直接向用户如实汇报“未找到包含 ## 的文件”。
->    - ❌ **严禁**因为返回空就怀疑工具失效、❌ **严禁**自行调用 PowerShell/cmd/dir 磁盘遍历兜底、❌ **严禁**反复更换参数试探！
-> 3. **极速调用路径**：
->    - 若环境有 Native MCP 工具（如 `search_items`）：**直接发起 1 次 Tool Call**，随后立即结束！
->    - 若环境无 Native MCP 工具：运行 `node scripts/nanofile_cli.mjs <tool_name> '<json_arguments>'`，拿到输出后立即结束！
-> 4. **绝对红线与禁忌**：
->    - ❌ **严禁**运行 `nanofile --help`、`nanofile -h`。
->    - ❌ **严禁**查阅源码或寻找 `nanofile-mcp.exe`。
->    - ❌ **严禁任何形式的重试循环与背景任务轮询**！
+> 💡 **【推荐调用建议 (Best Practices)】**：
+> 1. **全盘极速检索**：NanoFile 底层集成 Windows NTFS USN 日志与高并发内存索引，直接调用 `search_items` 即可毫秒级获取全盘文件与目录结果。
+> 2. **标准调用方式**：
+>    - **原生 MCP 环境**（推荐，如 Cursor、Claude Desktop、Trae、Antigravity）：直接发起对应的 MCP 工具调用（如 `search_items`、`read_file_content` 等）。
+>    - **CLI 命令行环境**：可使用 `node scripts/nanofile_cli.mjs <tool_name> '<json_arguments>'` 执行对应能力。
 
 ## 1. 7 大能力子技能结构
 
