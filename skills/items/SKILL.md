@@ -15,11 +15,18 @@ description: Universal item search and lifecycle operations (move, copy, rename,
 ## 包含工具 (3 个)
 
 ### 1. `search_items` (唯一全能检索工具)
-全能项目检索，支持限定类型（全部/仅文件/仅文件夹）、扩展名后缀过滤、搜索范围与模式。
+全能项目检索，支持限定类型（搜索项目/搜索文件/搜索文件夹）、扩展名后缀过滤、搜索范围与模式。
+
+#### 搜索类型与防重复搜索准则（重要）
+- **搜索项目 (`item_type: "all"`, 默认)**：**包含文件、文件夹的搜索**。一次检索即可返回匹配的所有文件与文件夹。如果执行了“搜索项目”，结果已全量包含，**严禁**再分别调用 `file` 和 `folder` 重复搜索！
+- **搜索文件 (`item_type: "file"`)**：**仅文件搜索**。仅在明确只需要查找文件时使用。
+- **搜索文件夹 (`item_type: "folder"`)**：**仅文件夹搜索**。仅在明确只需要查找文件夹/目录时使用。
+> ⚠️ **AI 行为准则**：三选一。请根据用户的实际意图选择最契合的一种搜索类型。**严禁对同一查询词连续/重复发起 3 种类型的多次调用**。
+
 ```json
 {
   "query": "invoice_2026",
-  "item_type": "file",        // "all" (文件+文件夹，默认) | "file" (仅文件) | "folder" (仅文件夹)
+  "item_type": "all",         // "all" (搜索项目：包含文件与文件夹，默认) | "file" (搜索文件：仅文件) | "folder" (搜索文件夹：仅文件夹)
   "extensions": ["pdf", "xlsx"], // 可选，限定扩展名（如仅搜指定后缀文件）
   "scope": "common",          // "common" (常用，默认) | "global" (全局全盘) | "directory" (目录)
   "directory_path": "D:\\Work", // 当 scope 为 "directory" 时提供

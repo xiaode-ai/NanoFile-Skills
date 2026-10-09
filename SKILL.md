@@ -71,7 +71,11 @@ nanofile-skills/
 ## 4. 全量工具速查 (27 个 Tools)
 
 ### 1. 项目读写 (`skills/items`)
-- `search_items`：**全能检索**。全局、常用或目录检索文件/文件夹；支持 `item_type`（all/file/folder）及 `extensions` 扩展名后缀过滤。
+- `search_items`：**全能检索**。全局、常用或目录检索；支持限定类型与后缀过滤。
+  - **搜索项目 (`item_type: "all"`, 默认)**：包含文件、文件夹的搜索。一次性查全，**严禁**再重复调用文件/文件夹搜索。
+  - **搜索文件 (`item_type: "file"`)**：仅文件搜索。
+  - **搜索文件夹 (`item_type: "folder"`)**：仅文件夹搜索。
+  - *防重准则*：三选一，切勿对同一关键词重复发起 3 种类型的多次调用。
 - `operate_item`：移动、复制、重命名或移入回收站。
 - `batch_operate_items`：批量移动、复制或移入回收站。
 

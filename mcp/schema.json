@@ -4,7 +4,7 @@
   "title": "NanoFile MCP Tools Specification",
   "tools": [
     {
-      "description": "Unified high-performance item search across files and directories. Supports item_type ('all', 'file', 'folder'), extension filters, scopes, and modes.",
+      "description": "Unified high-performance item search across files and directories. Supports item_type ('all', 'file', 'folder'), extension filters, scopes, and modes.\n\n【搜索类型说明与防重复搜索规则】：\n- 搜索项目 (item_type: 'all'，默认)：包含文件和文件夹的综合搜索。一次即可检索出所有文件与目录。当执行搜索项目时，已包含全部结果，严禁再重复调用 'file' 或 'folder' 进行二次搜索！\n- 搜索文件 (item_type: 'file')：仅文件搜索。仅在明确只要文件时使用。\n- 搜索文件夹 (item_type: 'folder')：仅文件夹搜索。仅在明确只要目录/文件夹时使用。\n*重要*：AI 应根据需求三选一，切勿对同一目标重复发起 3 种类型的多次冗余搜索。",
       "inputSchema": {
         "properties": {
           "directory_path": {
@@ -19,7 +19,7 @@
             "type": "array"
           },
           "item_type": {
-            "description": "Item type filter: 'all' (files and folders, default), 'file' (only files), or 'folder' (only folders).",
+            "description": "Item type filter:\n- 'all': 搜索项目（包含文件、文件夹的搜索，默认）。已涵盖所有内容。\n- 'file': 搜索文件（仅文件搜索）。\n- 'folder': 搜索文件夹（仅文件夹搜索）。\n注意：根据目标选择其中一种，严禁在调用 'all' 后又重复调用 'file' 和 'folder'！",
             "enum": [
               "all",
               "file",

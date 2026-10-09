@@ -70,7 +70,7 @@ nanofile-skills/
 
 | # | 能力分类 | 专项子技能 | 核心职能与代表工具 | 工具数 |
 | :-: | :--- | :--- | :--- | :-: |
-| **1** | **项目读写** | [`skills/items`](skills/items/SKILL.md) | `search_items` (常用/全局/目录范围，极速/实时模式); `operate_item`; `batch_operate_items` | 3 |
+| **1** | **项目读写** | [`skills/items`](skills/items/SKILL.md) | `search_items` (搜索项目[含文件/文件夹]/搜索文件/搜索文件夹，三选一防重复检索); `operate_item`; `batch_operate_items` | 3 |
 | **2** | **文件读写** | [`skills/files`](skills/files/SKILL.md) | `read_file_content`; `write_file_content`; `open_file`; `get_file_default_app`; `set_file_default_app` | 5 |
 | **3** | **文件夹读写** | [`skills/folders`](skills/folders/SKILL.md) | `list_folder_contents`; `create_folder`; `open_folder`; `get_folder_default_app`; `set_folder_default_app` | 5 |
 | **4** | **标签读写** | [`skills/tags`](skills/tags/SKILL.md) | `list_all_tags`; `delete_tag`; `rename_tag`; `get_item_tags`; `set_item_tags`; `remove_item_tags` | 6 |

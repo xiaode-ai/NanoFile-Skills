@@ -5,7 +5,7 @@ description: Dedicated file search, UTF-8 text content reading/writing, and file
 
 # NanoFile 文件读写技能 (File Management)
 
-针对文件的专用能力：内容读写、打开文件与默认打开方式管理。（注：文件搜索已全部由全能 `search_items` 统一承载）。
+针对文件的专用能力：内容读写、打开文件与默认打开方式管理。（注：文件搜索已全部由全能 `search_items` 统一承载，传入 `item_type: "file"` 进行仅文件搜索；如果已执行过 `item_type: "all"` 搜索项目，则已涵盖文件，切勿重复调用）。
 
 ## 适用场景
 - 用户需要读取指定文本或代码文件的内容。

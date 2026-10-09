@@ -5,7 +5,7 @@ description: Dedicated directory search, folder contents traversal, recursive fo
 
 # NanoFile 文件夹读写技能 (Folder Management)
 
-针对文件夹的专用能力：层级内容遍历、递归新建目录、默认打开方式管理与打开文件夹。（注：目录搜索已全部由全能 `search_items` 统一承载）。
+针对文件夹的专用能力：层级内容遍历、递归新建目录、默认打开方式管理与打开文件夹。（注：目录搜索已全部由全能 `search_items` 统一承载，传入 `item_type: "folder"` 进行仅文件夹搜索；如果已执行过 `item_type: "all"` 搜索项目，则已涵盖文件夹，切勿重复调用）。
 
 ## 适用场景
 - 用户需要列出指定文件夹内的直接子项清单（附带文件大小与类型）。
