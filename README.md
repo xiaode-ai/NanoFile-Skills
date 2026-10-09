@@ -15,6 +15,7 @@
 ## 🇨🇳 中文说明
 
 本项目是 **NanoFile** 官方开源的 **三位一体 AI Agent 扩展仓库**：
+
 1. **MCP 服务协议 (Model Context Protocol)**：面向标准 AI 客户端的机器通讯协议规范；
 2. **AI 技能指南 (Agent Skills)**：面向大模型自然语言决策、高情商执行的操作策略指南；
 3. **Agent 插件生态 (Plugins & Extensions)**：面向各类低代码编排平台、IDE 规则、框架 Toolkit 的开箱即用插件。
@@ -33,7 +34,10 @@ nanofile-skills/
 ├── mcp/                      # 🤖 2. 机器协议层 (MCP Server Protocol Specification)
 │   ├── schema.json           # 27 个工具的标准 JSON Schema（供各大 MCP Registry / 插件市场自动索引）
 │   └── config.example.json   # Claude Desktop / Cursor / Cline / Windsurf 接入范例
-├── skills/                   # 🧠 3. 智能认知层 (Modular Agent Skills Instructions)
+├── cli/                      # ⚡ 3. 命令行交互层 (Native CLI Specification & Tools)
+│   ├── README.md             # 原生 CLI (nf) 完整使用指南与 Agent 调度指引
+│   └── commands.json         # 结构化命令清单与 JSON Schema 规范定义
+├── skills/                   # 🧠 4. 智能认知层 (Modular Agent Skills Instructions)
 │   ├── items/SKILL.md        # 1. 项目读写 (通用搜索、复制、移动、重命名、删除)
 │   ├── files/SKILL.md        # 2. 文件读写 (文件专用检索、文本读写、打开方式读取与设定)
 │   ├── folders/SKILL.md      # 3. 文件夹读写 (目录专用检索、遍历、新建、打开方式读取与设定)
@@ -52,32 +56,29 @@ nanofile-skills/
 
 本仓库为业界主流的 Agent 体系提供了**100% 官方规范原生对齐**的插件标准：
 
-| Agent 生态 / 平台 | 官方插件规范标准 | 对应开源文件 | 使用方法 |
-| :--- | :--- | :--- | :--- |
-| **Smithery.ai / MCP Registry** | 官方 MCP 服务包清单标准 | [`smithery.yaml`](smithery.yaml) | 平台自动收录，开发者可通过 `npx -y @smithery/cli install nanofile` 一键注册 |
-| **OpenAI Codex 官方插件市场** | 官方 Marketplace 目录规范 | [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) | 通过 `codex plugin marketplace add xiaode-ai/nanofile-skills` 一键发现与安装 |
-| **Dify 1.0 官方插件体系** | 独立 Plugin + Provider + Tools 规范 | [`plugins/dify/manifest.yaml`](plugins/dify/manifest.yaml) | Dify 官方插件目录标准，支持在 Dify 平台一键打包与安装自定义工具插件 |
-| **Cursor / Windsurf / Copilot** | IDE 提示词规则与 Agent 上下文规约 | [`plugins/cursor/.cursorrules`](plugins/cursor/.cursorrules) | 直接将 `.cursorrules` 复制到项目根目录下，代码 Agent 即刻具备调用 NanoFile 的感知 |
-| **Claude / Antigravity Plugins** | 官方 Agent Plugin 标准清单 | [`plugin.json`](plugin.json) | 声明工具列表、技能路径与 MCP 服务关联，宿主自动装载 |
-| **LangChain / LlamaIndex / CrewAI** | Agent Toolkit 架构清单 | [`plugins/langchain/toolkit.json`](plugins/langchain/toolkit.json) | Python/TS 开发者依据参数快速实例化 `NanoFileToolkit` |
-| **通用 MCP 客户端 / Registry** | 官方 JSON Schema 协议定义 | [`mcp/schema.json`](mcp/schema.json) | 各大 AI 框架与客户端一键导入 27 个标准工具参数定义与校验规则 |
-
-
+| Agent 生态 / 平台                   | 官方插件规范标准                    | 对应开源文件                                                           | 使用方法                                                                          |
+| :---------------------------------- | :---------------------------------- | :--------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
+| **Smithery.ai / MCP Registry**      | 官方 MCP 服务包清单标准             | [`smithery.yaml`](smithery.yaml)                                       | 平台自动收录，开发者可通过 `npx -y @smithery/cli install nanofile` 一键注册       |
+| **OpenAI Codex 官方插件市场**       | 官方 Marketplace 目录规范           | [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) | 通过 `codex plugin marketplace add xiaode-ai/nanofile-skills` 一键发现与安装      |
+| **Dify 1.0 官方插件体系**           | 独立 Plugin + Provider + Tools 规范 | [`plugins/dify/manifest.yaml`](plugins/dify/manifest.yaml)             | Dify 官方插件目录标准，支持在 Dify 平台一键打包与安装自定义工具插件               |
+| **Cursor / Windsurf / Copilot**     | IDE 提示词规则与 Agent 上下文规约   | [`plugins/cursor/.cursorrules`](plugins/cursor/.cursorrules)           | 直接将 `.cursorrules` 复制到项目根目录下，代码 Agent 即刻具备调用 NanoFile 的感知 |
+| **Claude / Antigravity Plugins**    | 官方 Agent Plugin 标准清单          | [`plugin.json`](plugin.json)                                           | 声明工具列表、技能路径与 MCP 服务关联，宿主自动装载                               |
+| **LangChain / LlamaIndex / CrewAI** | Agent Toolkit 架构清单              | [`plugins/langchain/toolkit.json`](plugins/langchain/toolkit.json)     | Python/TS 开发者依据参数快速实例化 `NanoFileToolkit`                              |
+| **通用 MCP 客户端 / Registry**      | 官方 JSON Schema 协议定义           | [`mcp/schema.json`](mcp/schema.json)                                   | 各大 AI 框架与客户端一键导入 27 个标准工具参数定义与校验规则                      |
 
 ---
 
 ### 🛠️ 7 大核心能力速查 (27 个标准 MCP Tools)
 
-| # | 能力分类 | 专项子技能 | 核心职能与代表工具 | 工具数 |
-| :-: | :--- | :--- | :--- | :-: |
-| **1** | **项目读写** | [`skills/items`](skills/items/SKILL.md) | `search_items` (搜索项目[含文件/文件夹]/搜索文件/搜索文件夹，三选一防重复检索); `operate_item`; `batch_operate_items` | 3 |
-| **2** | **文件读写** | [`skills/files`](skills/files/SKILL.md) | `read_file_content`; `write_file_content`; `open_file`; `get_file_default_app`; `set_file_default_app` | 5 |
-| **3** | **文件夹读写** | [`skills/folders`](skills/folders/SKILL.md) | `list_folder_contents`; `create_folder`; `open_folder`; `get_folder_default_app`; `set_folder_default_app` | 5 |
-| **4** | **标签读写** | [`skills/tags`](skills/tags/SKILL.md) | `list_all_tags`; `delete_tag`; `rename_tag`; `get_item_tags`; `set_item_tags`; `remove_item_tags` | 6 |
-| **5** | **元数据读取** | [`skills/metadata`](skills/metadata/SKILL.md) | `get_item_metadata` (含文件夹递归总大小与条目数量统计); `get_media_metadata` | 2 |
-| **6** | **应用程序读写** | [`skills/apps`](skills/apps/SKILL.md) | `search_apps`; `launch_app`; `uninstall_app` | 3 |
-| **7** | **收藏夹读写** | [`skills/favorites`](skills/favorites/SKILL.md) | `get_favorites`; `add_favorite`; `remove_favorite` | 3 |
-
+|   #   | 能力分类         | 专项子技能                                      | 核心职能与代表工具                                                                                                    | 工具数 |
+| :---: | :--------------- | :---------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- | :----: |
+| **1** | **项目读写**     | [`skills/items`](skills/items/SKILL.md)         | `search_items` (搜索项目[含文件/文件夹]/搜索文件/搜索文件夹，三选一防重复检索); `operate_item`; `batch_operate_items` |   3    |
+| **2** | **文件读写**     | [`skills/files`](skills/files/SKILL.md)         | `read_file_content`; `write_file_content`; `open_file`; `get_file_default_app`; `set_file_default_app`                |   5    |
+| **3** | **文件夹读写**   | [`skills/folders`](skills/folders/SKILL.md)     | `list_folder_contents`; `create_folder`; `open_folder`; `get_folder_default_app`; `set_folder_default_app`            |   5    |
+| **4** | **标签读写**     | [`skills/tags`](skills/tags/SKILL.md)           | `list_all_tags`; `delete_tag`; `rename_tag`; `get_item_tags`; `set_item_tags`; `remove_item_tags`                     |   6    |
+| **5** | **元数据读取**   | [`skills/metadata`](skills/metadata/SKILL.md)   | `get_item_metadata` (含文件夹递归总大小与条目数量统计); `get_media_metadata`                                          |   2    |
+| **6** | **应用程序读写** | [`skills/apps`](skills/apps/SKILL.md)           | `search_apps`; `launch_app`; `uninstall_app`                                                                          |   3    |
+| **7** | **收藏夹读写**   | [`skills/favorites`](skills/favorites/SKILL.md) | `get_favorites`; `add_favorite`; `remove_favorite`                                                                    |   3    |
 
 ---
 
@@ -123,36 +124,35 @@ nanofile-skills/
 无论您使用的是国外前沿 Agent 还是国内自研 AI 编程/工作流平台，NanoFile 均能无缝适配：
 
 #### 🌍 国外主流 Agent 平台 (11 款)
-| 平台名称 | 适配协议 / 载体 | 接入方式 |
-| :--- | :--- | :--- |
-| **Claude** (Anthropic) | 原生 MCP (`stdio`) | `claude_desktop_config.json` 配置 `nanofile.exe --mcp` |
-| **Cursor** | 原生 MCP + `.cursorrules` | Cursor Settings > MCP Servers 添加，复制 [`.cursorrules`](plugins/cursor/.cursorrules) 到项目 |
-| **GitHub Copilot** | 原生 MCP + Copilot Rules | VS Code Copilot MCP 设置，自动识别 [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
-| **Google Antigravity** | 原生 MCP + `plugin.json` | 官方原生识别根目录 [`plugin.json`](plugin.json) 与 `skills/` |
-| **OpenCode** (Continue) | 原生 MCP (`stdio`) | Continue / OpenCode `config.json` 中配置 `nanofile` |
-| **OpenAI Codex** | 官方插件市场 (Marketplace) | `codex plugin marketplace add xiaode-ai/nanofile-skills`，安装 `nanofile` |
-| **xAI Grok** | Function Calling (Tool Schema) | 调用 [`mcp/schema.json`](mcp/schema.json) 工具声明 |
-| **OpenClaw** | 原生 MCP 客户端 | 直接配置本地 MCP 服务端命令 `nanofile.exe --mcp` |
-| **Hermes** (Nous Research) | Tool Calling / Schema | 导入 [`mcp/schema.json`](mcp/schema.json) 工具规范 |
-| **Inflection Pi** | 开放工具定义 | 参照 [`mcp/schema.json`](mcp/schema.json) 进行外部 Tool 绑定 |
-| **Bionic** (Bionic-GPT) | 原生 MCP 客户端 | 在 Bionic 连接面板中添加本地 MCP stdio 实例 |
+
+| 平台名称                   | 适配协议 / 载体                | 接入方式                                                                                                |
+| :------------------------- | :----------------------------- | :------------------------------------------------------------------------------------------------------ |
+| **Claude** (Anthropic)     | 原生 MCP (`stdio`)             | `claude_desktop_config.json` 配置 `nanofile.exe --mcp`                                                  |
+| **Cursor**                 | 原生 MCP + `.cursorrules`      | Cursor Settings > MCP Servers 添加，复制 [`.cursorrules`](plugins/cursor/.cursorrules) 到项目           |
+| **GitHub Copilot**         | 原生 MCP + Copilot Rules       | VS Code Copilot MCP 设置，自动识别 [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
+| **Google Antigravity**     | 原生 MCP + `plugin.json`       | 官方原生识别根目录 [`plugin.json`](plugin.json) 与 `skills/`                                            |
+| **OpenCode** (Continue)    | 原生 MCP (`stdio`)             | Continue / OpenCode `config.json` 中配置 `nanofile`                                                     |
+| **OpenAI Codex**           | 官方插件市场 (Marketplace)     | `codex plugin marketplace add xiaode-ai/nanofile-skills`，安装 `nanofile`                               |
+| **xAI Grok**               | Function Calling (Tool Schema) | 调用 [`mcp/schema.json`](mcp/schema.json) 工具声明                                                      |
+| **OpenClaw**               | 原生 MCP 客户端                | 直接配置本地 MCP 服务端命令 `nanofile.exe --mcp`                                                        |
+| **Hermes** (Nous Research) | Tool Calling / Schema          | 导入 [`mcp/schema.json`](mcp/schema.json) 工具规范                                                      |
+| **Inflection Pi**          | 开放工具定义                   | 参照 [`mcp/schema.json`](mcp/schema.json) 进行外部 Tool 绑定                                            |
+| **Bionic** (Bionic-GPT)    | 原生 MCP 客户端                | 在 Bionic 连接面板中添加本地 MCP stdio 实例                                                             |
 
 #### 🇨🇳 国内主流 Agent 平台 (10 款)
-| 平台名称 | 适配协议 / 载体 | 接入方式 |
-| :--- | :--- | :--- |
-| **字节跳动 Trae** | 原生 MCP (`stdio`) | Trae 设置 > MCP 面板添加 `nanofile.exe --mcp`，或使用 [`plugins/trae/mcp.json`](plugins/trae/mcp.json) |
-| **Kimi Code** (月之暗面) | 原生 MCP 协议 | 客户端设置中添加本地 MCP 扩展命令 |
-| **阿里通义灵码 Qoder** | 原生 MCP + 规则上下文 | IDE 设置中注册本地 MCP 服务端，配置代码库规则 |
-| **智谱 ZCode** (CodeGeeX) | 原生 MCP 扩展 | 插件设置中填写 `nanofile.exe --mcp` 即可接入 |
-| **MiniMax Code** (海螺/星野) | Function Calling / MCP | 导入工具定义或配置本地 Stdio 管道 |
-| **DeepSeek Harness** | 标准 Function Calling | 导入 [`mcp/schema.json`](mcp/schema.json) 声明 |
-| **腾讯 WorkBuddy** | 企业级自定义工具 / Schema | 在机器人/工作流后台导入 [`mcp/schema.json`](mcp/schema.json) 工具规范 |
-| **百度度伴 DuMate** (文心智能体) | 文心智能体 Tool Schema | 智能体开发平台导入 [`mcp/schema.json`](mcp/schema.json) 工具声明 |
-| **腾讯 Marvis** | 智能体 Tool Schema | 导入 [`mcp/schema.json`](mcp/schema.json) 规范作为系统辅助工具 |
-| **QClaw** | 原生 MCP 客户端协议 | 直接挂载 `nanofile.exe --mcp` 本地运行实例 |
 
-
-
+| 平台名称                         | 适配协议 / 载体           | 接入方式                                                                                               |
+| :------------------------------- | :------------------------ | :----------------------------------------------------------------------------------------------------- |
+| **字节跳动 Trae**                | 原生 MCP (`stdio`)        | Trae 设置 > MCP 面板添加 `nanofile.exe --mcp`，或使用 [`plugins/trae/mcp.json`](plugins/trae/mcp.json) |
+| **Kimi Code** (月之暗面)         | 原生 MCP 协议             | 客户端设置中添加本地 MCP 扩展命令                                                                      |
+| **阿里通义灵码 Qoder**           | 原生 MCP + 规则上下文     | IDE 设置中注册本地 MCP 服务端，配置代码库规则                                                          |
+| **智谱 ZCode** (CodeGeeX)        | 原生 MCP 扩展             | 插件设置中填写 `nanofile.exe --mcp` 即可接入                                                           |
+| **MiniMax Code** (海螺/星野)     | Function Calling / MCP    | 导入工具定义或配置本地 Stdio 管道                                                                      |
+| **DeepSeek Harness**             | 标准 Function Calling     | 导入 [`mcp/schema.json`](mcp/schema.json) 声明                                                         |
+| **腾讯 WorkBuddy**               | 企业级自定义工具 / Schema | 在机器人/工作流后台导入 [`mcp/schema.json`](mcp/schema.json) 工具规范                                  |
+| **百度度伴 DuMate** (文心智能体) | 文心智能体 Tool Schema    | 智能体开发平台导入 [`mcp/schema.json`](mcp/schema.json) 工具声明                                       |
+| **腾讯 Marvis**                  | 智能体 Tool Schema        | 导入 [`mcp/schema.json`](mcp/schema.json) 规范作为系统辅助工具                                         |
+| **QClaw**                        | 原生 MCP 客户端协议       | 直接挂载 `nanofile.exe --mcp` 本地运行实例                                                             |
 
 ---
 
@@ -161,12 +161,15 @@ nanofile-skills/
 **NanoFile MCP & Skills** provides the official open-source [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server declarations, modular agent skills, and ecosystem plugins for the [NanoFile Desktop](https://apps.microsoft.com/detail/9pgwd50gwcjw) app.
 
 ### 🌟 Three-Tier Architecture
+
 1. **Plugin Ecosystem (`plugins/`)**: Ready-to-use plugins for Cursor rules, Dify toolsets, and LangChain toolkits.
 2. **Machine Protocol (`mcp/`)**: Full JSON Schema (`schema.json`) for automatic indexing by MCP Registries.
 3. **Cognitive Skills (`skills/`)**: Natural language guidelines to help LLMs select optimal search modes and safe filesystem actions.
 
 ### 📥 1. Installation
+
 Install NanoFile from the Microsoft Store:
+
 - 🛒 **Web**: [Microsoft Store Web Page](https://apps.microsoft.com/detail/9pgwd50gwcjw)
 - ⚡ **Protocol**: `ms-windows-store://pdp/?ProductId=9PGWD50GWCJW`
 

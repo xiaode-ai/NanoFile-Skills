@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "nf",
+  "description": "NanoFile High-Performance Native Command-Line Interface",
+  "version": "1.0.51",
+  "binary": "nf.exe",
+  "aliases": ["nanofile-cli.exe"],
+  "commands": [
+    {
+      "name": "search",
+      "alias": "find",
+      "description": "Fast search for files and folders across local drives",
+      "options": [
+        {
+          "name": "--ext",
+          "description": "Filter by file extension (e.g. pdf, docx)",
+          "type": "string"
+        },
+        {
+          "name": "--path",
+          "description": "Scope search to a parent directory",
+          "type": "string"
+        },
+        {
+          "name": "--type",
+          "description": "Filter item type ('file', 'dir', 'all')",
+          "type": "string"
+        },
+        {
+          "name": "--limit",
+          "description": "Maximum number of items to return",
+          "type": "integer"
+        },
+        {
+          "name": "--offset",
+          "description": "Paging offset",
+          "type": "integer"
+        },
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "cat",
+      "alias": "read",
+      "description": "Read text content of a specified file",
+      "options": [
+        {
+          "name": "--offset",
+          "description": "Character offset to start reading from",
+          "type": "integer"
+        },
+        {
+          "name": "--limit",
+          "description": "Maximum characters to read",
+          "type": "integer"
+        },
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "write",
+      "description": "Write or overwrite UTF-8 content to a file",
+      "options": [
+        {
+          "name": "--content",
+          "description": "Text content to write",
+          "type": "string"
+        },
+        {
+          "name": "--overwrite",
+          "description": "Allow overwriting existing files",
+          "type": "boolean"
+        },
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "ls",
+      "alias": "list",
+      "description": "List directory entries",
+      "options": [
+        {
+          "name": "--recursive",
+          "description": "Recursively list subdirectories",
+          "type": "boolean"
+        },
+        {
+          "name": "--limit",
+          "description": "Maximum items to list",
+          "type": "integer"
+        },
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "mkdir",
+      "description": "Recursively create directory",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "open",
+      "description": "Open file or directory using system default or designated application",
+      "options": [
+        {
+          "name": "--app",
+          "description": "Specific application path to launch with",
+          "type": "string"
+        },
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "mv",
+      "alias": "move",
+      "description": "Move a file or directory to a new location",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "cp",
+      "alias": "copy",
+      "description": "Copy a file or directory to a destination",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "rename",
+      "description": "Rename a file or directory",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "trash",
+      "description": "Safely move a file or folder to Windows Recycle Bin",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "rm",
+      "alias": "delete",
+      "description": "Permanently delete a file or directory",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "meta",
+      "alias": "metadata",
+      "description": "Retrieve file system attributes or deep media metadata",
+      "options": [
+        {
+          "name": "--media",
+          "description": "Extract multimedia metadata (audio/video/lines)",
+          "type": "boolean"
+        },
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "alias": "tags",
+      "description": "Manage custom tags for files and folders",
+      "subcommands": ["list", "get", "set", "remove", "rename", "delete"],
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "fav",
+      "alias": "favorites",
+      "description": "Manage user bookmarked locations and quick access folders",
+      "subcommands": ["list", "add", "remove"],
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "app",
+      "alias": "apps",
+      "description": "Search, launch or manage installed applications",
+      "subcommands": ["list", "run", "uninstall"],
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "tools",
+      "alias": "list-tools",
+      "description": "List all backend MCP tools, capabilities and descriptions",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output full JSON schemas of all tools",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "call",
+      "description": "Universal raw dispatcher to invoke any MCP backend tool with JSON arguments",
+      "usage": "nf call <tool_name> [json_arguments] [--json]",
+      "options": [
+        {
+          "name": "--json",
+          "description": "Output structured JSON format",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "version",
+      "description": "Display NanoFile CLI version",
+      "options": []
+    }
+  ]
+}
