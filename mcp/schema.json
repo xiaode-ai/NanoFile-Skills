@@ -4,7 +4,7 @@
   "title": "NanoFile MCP Tools Specification",
   "tools": [
     {
-      "description": "Unified high-performance item search across files and directories. Supports item_type ('all', 'file', 'folder'), extension filters, scopes, and modes.\n\n【搜索类型说明与防重复搜索规则】：\n- 搜索项目 (item_type: 'all'，默认)：包含文件和文件夹的综合搜索。一次即可检索出所有文件与目录。当执行搜索项目时，已包含全部结果，严禁再重复调用 'file' 或 'folder' 进行二次搜索！\n- 搜索文件 (item_type: 'file')：仅文件搜索。仅在明确只要文件时使用。\n- 搜索文件夹 (item_type: 'folder')：仅文件夹搜索。仅在明确只要目录/文件夹时使用。\n*重要*：AI 应根据需求三选一，切勿对同一目标重复发起 3 种类型的多次冗余搜索。",
+      "description": "Unified high-performance item search across files and directories. Supports item_type ('all', 'file', 'folder'), extension filters, scopes, and modes.",
       "inputSchema": {
         "properties": {
           "directory_path": {
@@ -19,7 +19,7 @@
             "type": "array"
           },
           "item_type": {
-            "description": "Item type filter:\n- 'all': 搜索项目（包含文件、文件夹的搜索，默认）。已涵盖所有内容。\n- 'file': 搜索文件（仅文件搜索）。\n- 'folder': 搜索文件夹（仅文件夹搜索）。\n注意：根据目标选择其中一种，严禁在调用 'all' 后又重复调用 'file' 和 'folder'！",
+            "description": "Item type filter: 'all' (files and folders, default), 'file' (only files), or 'folder' (only folders).",
             "enum": [
               "all",
               "file",
@@ -28,7 +28,7 @@
             "type": "string"
           },
           "max_results": {
-            "description": "Maximum number of items to return, default 50",
+            "description": "Maximum number of items to return. Defaults to 0 or omitted for unlimited results (no truncation).",
             "type": "integer"
           },
           "mode": {
@@ -130,7 +130,7 @@
       "inputSchema": {
         "properties": {
           "max_characters": {
-            "description": "Max characters to read (default 50000)",
+            "description": "Optional max characters to read. Defaults to 0 or omitted for full file content without limitation.",
             "type": "integer"
           },
           "path": {
@@ -304,7 +304,7 @@
       "name": "open_folder"
     },
     {
-      "description": "List all existing custom tags across the system along with their usage counts.",
+      "description": "List all existing custom tags across the system along with their usage counts from user_data.db.",
       "inputSchema": {
         "properties": {},
         "type": "object"
@@ -349,7 +349,7 @@
       "name": "rename_tag"
     },
     {
-      "description": "Get assigned custom tags for a specific file or folder.",
+      "description": "Get assigned custom tags for a specific file or folder from NTFS ADS and user_data.db.",
       "inputSchema": {
         "properties": {
           "path": {
@@ -365,7 +365,7 @@
       "name": "get_item_tags"
     },
     {
-      "description": "Assign or update custom tags for a file or folder.",
+      "description": "Assign or update custom tags for a file or folder (writes to physical NTFS ADS and user_data.db).",
       "inputSchema": {
         "properties": {
           "path": {
@@ -389,7 +389,7 @@
       "name": "set_item_tags"
     },
     {
-      "description": "Remove specific tags or all tags from a file or folder.",
+      "description": "Remove specified custom tags or all tags from a file or folder.",
       "inputSchema": {
         "properties": {
           "path": {
@@ -444,7 +444,7 @@
       "name": "get_media_metadata"
     },
     {
-      "description": "Search installed desktop applications by name keyword.",
+      "description": "Search exclusively within the installed applications list by application name keyword or publisher.",
       "inputSchema": {
         "properties": {
           "query": {
@@ -460,11 +460,11 @@
       "name": "search_apps"
     },
     {
-      "description": "Launch an installed application with optional arguments.",
+      "description": "Launch an application restricted strictly to the installed applications list by application name or verified executable path.",
       "inputSchema": {
         "properties": {
           "app_path_or_command": {
-            "description": "Executable path or registered command",
+            "description": "Application name or verified executable path from the installed applications list",
             "type": "string"
           },
           "arguments": {
@@ -483,7 +483,7 @@
       "name": "launch_app"
     },
     {
-      "description": "Open the system uninstaller or Settings page for an application.",
+      "description": "Launch the uninstaller wizard or open the system uninstaller page for an installed application.",
       "inputSchema": {
         "properties": {
           "app_name": {
@@ -499,7 +499,7 @@
       "name": "uninstall_app"
     },
     {
-      "description": "List all bookmarked favorite directories and quick access locations.",
+      "description": "List all bookmarked favorite directories and quick access locations from the user database.",
       "inputSchema": {
         "properties": {},
         "type": "object"
@@ -507,7 +507,7 @@
       "name": "get_favorites"
     },
     {
-      "description": "Add a folder path to favorites/quick access.",
+      "description": "Add a folder path to favorites/quick access in the user database.",
       "inputSchema": {
         "properties": {
           "alias": {
@@ -527,7 +527,7 @@
       "name": "add_favorite"
     },
     {
-      "description": "Remove a folder path from favorites.",
+      "description": "Remove a folder path from favorites in the user database.",
       "inputSchema": {
         "properties": {
           "path": {
