@@ -19,7 +19,8 @@ NanoFile is a high-performance local file manager on Windows.
    - Use `list_all_tags`, `get_item_tags`, and `set_item_tags` to organize resources for the user.
 
 4. **Safety & Destructive Actions**:
-   - `operate_item` with `operation: "recycle"` moves items safely to the Windows Recycle Bin (restorable), requiring no secondary confirmation.
+   - `operate_item` with `operation: "recycle"` moves items safely to the Windows Recycle Bin (restorable). It is the only deletion path — the tool does not support permanent delete.
    - **System Critical Directories**: Operations modifying system critical directories (e.g., `C:\Windows`, Startup folder) are strictly blocked at the native engine level.
-   - **Privileged Directories**: For directories requiring special administrator permissions or elevated access, prompt the user for explicit confirmation before proceeding, mirroring the desktop GUI security experience.
+   - **Privileged Directories**: For directories requiring administrator permissions or elevated access, you MUST obtain explicit user confirmation before any write, permission change, or delete — mirroring the desktop GUI security experience.
+   - **Sensitive Data**: Do not read or exfiltrate credential/key material (e.g. `.ssh` private keys, `.env` files, token stores) via `read_file_content` unless the user explicitly asks for that specific file.
 

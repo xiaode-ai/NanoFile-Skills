@@ -3,7 +3,7 @@
   "name": "nanofile",
   "displayName": "NanoFile Native FS & Search",
   "version": "1.0.7",
-  "description": "High-performance native Windows filesystem management, lightning search, tags, and privacy vault plugin for AI agents.",
+  "description": "High-performance native Windows filesystem management, lightning search, tags, and favorites plugin for AI agents.",
   "logo": "assets/logo.png",
   "icon": "https://raw.githubusercontent.com/xiaode-ai/nanofile-skills/main/assets/logo.png",
   "suggestedPrompts": [

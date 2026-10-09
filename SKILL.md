@@ -6,7 +6,7 @@ description: Connect your AI assistant to NanoFile for high-performance local fi
 # NanoFile Agent Skills (7 大核心能力全集)
 
 > 💡 **【推荐调用建议 (Best Practices)】**：
-> 1. **全盘极速检索**：NanoFile 底层集成 Windows NTFS USN 日志与高并发内存索引，直接调用 `search_items` 即可毫秒级获取全盘文件与目录结果。
+> 1. **全盘极速检索**：NanoFile 内置原生高性能索引引擎，直接调用 `search_items` 即可毫秒级获取全盘文件与目录结果。
 > 2. **标准调用方式**：
 >    - **原生 MCP 环境**（推荐，如 Cursor、Claude Desktop、Trae、Antigravity）：直接发起对应的 MCP 工具调用（如 `search_items`、`read_file_content` 等）。
 >    - **CLI 命令行环境**：可使用 `node scripts/nanofile_cli.mjs <tool_name> '<json_arguments>'` 执行对应能力。

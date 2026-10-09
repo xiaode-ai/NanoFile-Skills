@@ -304,7 +304,7 @@
       "name": "open_folder"
     },
     {
-      "description": "List all existing custom tags across the system along with their usage counts from user_data.db.",
+      "description": "List all existing custom tags across the system along with their usage counts.",
       "inputSchema": {
         "properties": {},
         "type": "object"
@@ -349,7 +349,7 @@
       "name": "rename_tag"
     },
     {
-      "description": "Get assigned custom tags for a specific file or folder from NTFS ADS and user_data.db.",
+      "description": "Get assigned custom tags for a specific file or folder.",
       "inputSchema": {
         "properties": {
           "path": {
@@ -365,7 +365,7 @@
       "name": "get_item_tags"
     },
     {
-      "description": "Assign or update custom tags for a file or folder (writes to physical NTFS ADS and user_data.db).",
+      "description": "Assign or update custom tags for a file or folder.",
       "inputSchema": {
         "properties": {
           "path": {
