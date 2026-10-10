@@ -7,6 +7,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, "..");
 const pluginJsonPath = resolve(rootDir, "plugin.json");
 const manifestJsonPath = resolve(rootDir, "plugins", "manifest.json");
+const claudeMarketplacePath = resolve(rootDir, ".claude-plugin", "marketplace.json");
+const claudePluginPath = resolve(rootDir, ".claude-plugin", "plugin.json");
+const codexPluginPath = resolve(rootDir, ".codex-plugin", "plugin.json");
 
 /**
  * 0-999 进位升级版本号:
@@ -48,24 +51,32 @@ export function autoBumpAndRelease(
     json.version = newVersion;
     writeFileSync(pluginJsonPath, JSON.stringify(json, null, 2) + "\n", "utf8");
 
-    // 3. 同步写入 plugins/manifest.json
-    try {
-      const manifestRaw = readFileSync(manifestJsonPath, "utf8");
-      const manifest = JSON.parse(manifestRaw);
-      manifest.version = newVersion;
-      writeFileSync(
-        manifestJsonPath,
-        JSON.stringify(manifest, null, 2) + "\n",
-        "utf8",
-      );
-    } catch (_) {}
+    // 3. 同步写入 plugins/manifest.json 及各类平台清单
+    const syncJsonVersion = (filePath, updater) => {
+      try {
+        const fileContent = readFileSync(filePath, "utf8");
+        const data = JSON.parse(fileContent);
+        updater(data);
+        writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n", "utf8");
+      } catch (_) {}
+    };
+
+    syncJsonVersion(manifestJsonPath, (d) => { d.version = newVersion; });
+    syncJsonVersion(claudePluginPath, (d) => { d.version = newVersion; });
+    syncJsonVersion(codexPluginPath, (d) => { d.version = newVersion; });
+    syncJsonVersion(claudeMarketplacePath, (d) => {
+      d.version = newVersion;
+      if (Array.isArray(d.plugins)) {
+        d.plugins.forEach((p) => { p.version = newVersion; });
+      }
+    });
 
     console.log(
       `🚀 [nanofile-skills] 版本号自增: ${oldVersion} -> ${newVersion} (0-999 进位制)`,
     );
 
-    // 4. Git 自动提交版本文件
-    execSync("git add plugin.json plugins/manifest.json", {
+    // 4. Git 自动提交版本文件与工作流配置
+    execSync("git add plugin.json plugins/manifest.json .claude-plugin .codex-plugin .github scripts", {
       cwd: rootDir,
       stdio: "inherit",
     });
