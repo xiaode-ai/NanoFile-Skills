@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "nf",
   "description": "NanoFile High-Performance Native Command-Line Interface",
-  "version": "1.0.51",
+  "version": "1.0.52",
   "binary": "nf.exe",
   "aliases": ["nanofile-cli.exe"],
   "commands": [
