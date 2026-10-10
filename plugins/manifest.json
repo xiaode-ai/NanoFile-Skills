@@ -12,9 +12,7 @@
   "entrypoint": {
     "type": "mcp_stdio",
     "command": "nanofile.exe",
-    "args": [
-      "--mcp"
-    ],
+    "args": ["--mcp"],
     "schema": "../mcp/schema.json"
   },
   "runtimeRequirements": {

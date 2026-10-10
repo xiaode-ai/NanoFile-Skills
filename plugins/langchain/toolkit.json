@@ -10,7 +10,15 @@
   "sub_toolkits": [
     {
       "name": "FileSystemToolkit",
-      "tools": ["search_items", "operate_item", "batch_operate_items", "read_file_content", "write_file_content", "list_folder_contents", "create_folder"]
+      "tools": [
+        "search_items",
+        "operate_item",
+        "batch_operate_items",
+        "read_file_content",
+        "write_file_content",
+        "list_folder_contents",
+        "create_folder"
+      ]
     },
     {
       "name": "MetadataToolkit",
@@ -18,11 +26,25 @@
     },
     {
       "name": "AssociationsToolkit",
-      "tools": ["open_file", "open_folder", "get_file_default_app", "set_file_default_app", "get_folder_default_app", "set_folder_default_app"]
+      "tools": [
+        "open_file",
+        "open_folder",
+        "get_file_default_app",
+        "set_file_default_app",
+        "get_folder_default_app",
+        "set_folder_default_app"
+      ]
     },
     {
       "name": "TagsToolkit",
-      "tools": ["list_all_tags", "delete_tag", "rename_tag", "get_item_tags", "set_item_tags", "remove_item_tags"]
+      "tools": [
+        "list_all_tags",
+        "delete_tag",
+        "rename_tag",
+        "get_item_tags",
+        "set_item_tags",
+        "remove_item_tags"
+      ]
     },
     {
       "name": "ApplicationsToolkit",

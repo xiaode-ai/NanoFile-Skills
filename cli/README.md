@@ -3,11 +3,12 @@
 ## 1. 概述
 
 本目录下随附了预编译的 Windows 原生命令行工具 [`nf.exe`](./nf.exe)（仅约 330 KB）。
-`nf`（别名 `nanofile-cli`）采用轻量客户端代理架构（Thin CLI），作为与 NanoFile 桌面端通信的高效命令行桥梁，帮助开发者和 AI Agent 在终端中直接调用 NanoFile 强大的本地文件管理能力。
+`nanofile-cli` 是 `nf` 的等价别名，二者的功能与行为完全一致。经随附的 `install.ps1` 安装后，`nf` 与 `nanofile-cli` 两个命令名均可在任意终端中直接使用。
+`nf` 采用轻量客户端代理架构（Thin CLI），作为与 NanoFile 桌面端通信的高效命令行桥梁，帮助开发者和 AI Agent 在终端中直接调用 NanoFile 强大的本地文件管理能力。
 
 ### 核心特性
 
-- **开箱即用**：直接提供单文件可执行程序 [`nf.exe`](./nf.exe)，可放置于任意目录或加入系统 PATH 全局使用；若通过微软应用商店安装客户端，系统亦会自动注册全局别名。
+- **开箱即用**：直接提供单文件可执行程序 [`nf.exe`](./nf.exe)，可放置于任意目录或通过随附的 `install.ps1` 安装至用户级可执行路径全局使用；安装脚本会自动创建 `nanofile-cli` 别名，两个命令名等效。
 - **极致轻量**：体积仅约 300 KB，全原生机器码交付，无任何 Node.js、Python 或外部解释器依赖，启动耗时仅数毫秒。
 - **无缝集成桌面端**：深度对接 NanoFile 桌面端核心引擎，共享毫秒级全盘极速检索与底层文件管理能力。
 - **对齐 MCP 全量能力**：完整覆盖全盘极速检索、文件内容读写、目录浏览、物理生命周期、元数据提取、标签维护、应用管理及收藏夹功能。
@@ -33,7 +34,7 @@
 | `nf cp`      | `nf copy`       | 复制文件或目录           | `nf cp "D:\a.txt" "D:\Backup\a_copy.txt"`        |
 | `nf rename`  | -               | 重命名文件或目录         | `nf rename "D:\old.txt" "D:\new.txt"`            |
 | `nf trash`   | -               | 安全移入 Windows 回收站  | `nf trash "D:\temp.log"`                         |
-| `nf rm`      | `nf delete`     | 永久物理删除             | `nf rm "D:\junk.tmp"`                            |
+| `nf rm`      | `nf delete`     | 移入 Windows 回收站      | `nf rm "D:\junk.tmp"`                            |
 | `nf meta`    | `nf metadata`   | 获取物理属性与媒体元数据 | `nf meta "D:\video.mp4" --media --json`          |
 | `nf tag`     | `nf tags`       | 标签管理（增删改查）     | `nf tag set "D:\file.txt" "Work" "Important"`    |
 | `nf fav`     | `nf favorites`  | 收藏夹与快速访问管理     | `nf fav list` / `nf fav add "D:\Work"`           |

@@ -71,7 +71,7 @@ nanofile-skills/
 
 ## 4. 原生命令行 CLI 使用 (nf)
 
-NanoFile 随应用安装包附带全原生命令行工具 `nf`（别名 `nanofile-cli`），通过 Windows `AppExecutionAlias` 实现免配 PATH、开箱即用：
+NanoFile 提供全原生命令行工具 `nf`，随本技能库 `cli/` 目录独立分发。运行其 `install.ps1` 即可安装至用户级可执行路径，免配 PATH、开箱即用（需本机已安装 NanoFile 桌面客户端）：
 
 ```bash
 # 极速全盘搜索

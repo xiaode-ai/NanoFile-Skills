@@ -1,12 +1,12 @@
-import { readFileSync, writeFileSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
+import { readFileSync, writeFileSync } from "fs";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+import { execSync } from "child_process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const rootDir = resolve(__dirname, '..');
-const pluginJsonPath = resolve(rootDir, 'plugin.json');
-const manifestJsonPath = resolve(rootDir, 'plugins', 'manifest.json');
+const rootDir = resolve(__dirname, "..");
+const pluginJsonPath = resolve(rootDir, "plugin.json");
+const manifestJsonPath = resolve(rootDir, "plugins", "manifest.json");
 
 /**
  * 0-999 进位升级版本号:
@@ -15,7 +15,7 @@ const manifestJsonPath = resolve(rootDir, 'plugins', 'manifest.json');
  * minor 从 0 累加到 999；满 1000 时向 major 进位，minor 归 0。
  */
 export function bumpVersion(currentVersion) {
-  const parts = String(currentVersion).trim().split('.').map(Number);
+  const parts = String(currentVersion).trim().split(".").map(Number);
   let major = parts[0] || 1;
   let minor = parts[1] || 0;
   let patch = parts[2] || 0;
@@ -33,61 +33,83 @@ export function bumpVersion(currentVersion) {
   return `${major}.${minor}.${patch}`;
 }
 
-export function autoBumpAndRelease(commitMessage = 'chore: auto release update') {
+export function autoBumpAndRelease(
+  commitMessage = "chore: auto release update",
+) {
   try {
     // 1. 读取当前基准版本
-    const raw = readFileSync(pluginJsonPath, 'utf8');
+    const raw = readFileSync(pluginJsonPath, "utf8");
     const json = JSON.parse(raw);
-    const oldVersion = json.version || '1.0.0';
+    const oldVersion = json.version || "1.0.0";
     const newVersion = bumpVersion(oldVersion);
     const tagName = `v${newVersion}`;
 
     // 2. 同步写入 plugin.json
     json.version = newVersion;
-    writeFileSync(pluginJsonPath, JSON.stringify(json, null, 2) + '\n', 'utf8');
+    writeFileSync(pluginJsonPath, JSON.stringify(json, null, 2) + "\n", "utf8");
 
     // 3. 同步写入 plugins/manifest.json
     try {
-      const manifestRaw = readFileSync(manifestJsonPath, 'utf8');
+      const manifestRaw = readFileSync(manifestJsonPath, "utf8");
       const manifest = JSON.parse(manifestRaw);
       manifest.version = newVersion;
-      writeFileSync(manifestJsonPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+      writeFileSync(
+        manifestJsonPath,
+        JSON.stringify(manifest, null, 2) + "\n",
+        "utf8",
+      );
     } catch (_) {}
 
-    console.log(`🚀 [nanofile-skills] 版本号自增: ${oldVersion} -> ${newVersion} (0-999 进位制)`);
+    console.log(
+      `🚀 [nanofile-skills] 版本号自增: ${oldVersion} -> ${newVersion} (0-999 进位制)`,
+    );
 
     // 4. Git 自动提交版本文件
-    execSync('git add plugin.json plugins/manifest.json', { cwd: rootDir, stdio: 'inherit' });
-    execSync(`git commit -m "release: ${tagName} - ${commitMessage}"`, { cwd: rootDir, stdio: 'inherit' });
+    execSync("git add plugin.json plugins/manifest.json", {
+      cwd: rootDir,
+      stdio: "inherit",
+    });
+    execSync(`git commit -m "release: ${tagName} - ${commitMessage}"`, {
+      cwd: rootDir,
+      stdio: "inherit",
+    });
 
     // 5. 创建本地 Git Tag
-    execSync(`git tag -a ${tagName} -m "Release ${tagName}"`, { cwd: rootDir, stdio: 'inherit' });
+    execSync(`git tag -a ${tagName} -m "Release ${tagName}"`, {
+      cwd: rootDir,
+      stdio: "inherit",
+    });
     console.log(`🏷️ [nanofile-skills] 本地 Git 标签已创建: ${tagName}`);
 
     // 6. 推送到 GitHub 远程（分支 + 标签）
-    execSync('git push origin main', { cwd: rootDir, stdio: 'inherit' });
-    execSync(`git push origin ${tagName}`, { cwd: rootDir, stdio: 'inherit' });
+    execSync("git push origin main", { cwd: rootDir, stdio: "inherit" });
+    execSync(`git push origin ${tagName}`, { cwd: rootDir, stdio: "inherit" });
     console.log(`☁️ [nanofile-skills] 云端 Git 标签已推送: ${tagName}`);
 
     // 7. 使用 gh cli 自动创建 GitHub Release
     try {
-      execSync(`gh release create ${tagName} --title "${tagName}" --notes "Release ${tagName} for NanoFile Agent Skills & MCP Specification"`, {
-        cwd: rootDir,
-        stdio: 'inherit',
-      });
-      console.log(`🎉 [nanofile-skills] GitHub Release 自动发布成功: ${tagName}`);
+      execSync(
+        `gh release create ${tagName} --title "${tagName}" --notes "Release ${tagName} for NanoFile Agent Skills & MCP Specification"`,
+        {
+          cwd: rootDir,
+          stdio: "inherit",
+        },
+      );
+      console.log(
+        `🎉 [nanofile-skills] GitHub Release 自动发布成功: ${tagName}`,
+      );
     } catch (ghErr) {
       console.warn(`⚠️ GitHub Release 创建跳过或需确认权限:`, ghErr.message);
     }
 
     return newVersion;
   } catch (err) {
-    console.error('❌ 自动发布与打标签失败:', err);
+    console.error("❌ 自动发布与打标签失败:", err);
     process.exit(1);
   }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const msg = process.argv.slice(2).join(' ') || 'auto bump version';
+  const msg = process.argv.slice(2).join(" ") || "auto bump version";
   autoBumpAndRelease(msg);
 }

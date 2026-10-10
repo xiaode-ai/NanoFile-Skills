@@ -184,7 +184,7 @@
     {
       "name": "rm",
       "alias": "delete",
-      "description": "Permanently delete a file or directory",
+      "description": "Move a file or directory to Windows Recycle Bin",
       "options": [
         {
           "name": "--json",
